@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Categories on Satan</title>
-        <link>https://example.com/categories/</link>
-        <description>Recent content in Categories on Satan</description>
+        <title>Categories on 博客</title>
+        <link>https://zhengzel.github.io/categories/</link>
+        <description>Recent content in Categories on 博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Mon, 11 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/categories/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>syntax</title>
-        <link>https://example.com/categories/syntax/</link>
-        <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+        <lastBuildDate>Wed, 09 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://zhengzel.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>闲聊</title>
+        <link>https://zhengzel.github.io/categories/%E9%97%B2%E8%81%8A/</link>
+        <pubDate>Wed, 09 Sep 2020 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/categories/syntax/</guid>
-        <description></description>
+        <guid>https://zhengzel.github.io/categories/%E9%97%B2%E8%81%8A/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/categories/%E9%97%B2%E8%81%8A/xliao.jpg" alt="Featured image of post 闲聊" /&gt;</description>
         </item>
         <item>
-        <title>themes</title>
-        <link>https://example.com/categories/themes/</link>
-        <pubDate>Mon, 11 Mar 2019 00:00:00 +0000</pubDate>
+        <title>极客</title>
+        <link>https://zhengzel.github.io/categories/%E6%9E%81%E5%AE%A2/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/categories/themes/</guid>
-        <description></description>
+        <guid>https://zhengzel.github.io/categories/%E6%9E%81%E5%AE%A2/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/categories/%E6%9E%81%E5%AE%A2/jike.jpg" alt="Featured image of post 极客" /&gt;</description>
         </item>
         <item>
-        <title>Test</title>
-        <link>https://example.com/categories/test/</link>
-        <pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate>
+        <title>技术</title>
+        <link>https://zhengzel.github.io/categories/%E6%8A%80%E6%9C%AF/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/categories/test/</guid>
-        <description>&lt;img src="https://example.com/categories/test/hutomo-abrianto-l2jk-uxb1BY-unsplash.jpg" alt="Featured image of post Test" /&gt;</description>
+        <guid>https://zhengzel.github.io/categories/%E6%8A%80%E6%9C%AF/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/categories/%E6%8A%80%E6%9C%AF/jishu.jpg" alt="Featured image of post 技术" /&gt;</description>
         </item>
         
     </channel>
