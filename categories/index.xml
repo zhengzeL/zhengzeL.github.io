@@ -7,17 +7,9 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <lastBuildDate>Sun, 04 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://zhengzel.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>闲聊</title>
-        <link>https://zhengzel.github.io/categories/%E9%97%B2%E8%81%8A/</link>
-        <pubDate>Sun, 04 Dec 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://zhengzel.github.io/categories/%E9%97%B2%E8%81%8A/</guid>
-        <description>&lt;img src="https://zhengzel.github.io/categories/%E9%97%B2%E8%81%8A/gossip.jpg" alt="Featured image of post 闲聊" /&gt;</description>
-        </item>
-        <item>
         <title>博客</title>
         <link>https://zhengzel.github.io/categories/%E5%8D%9A%E5%AE%A2/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <pubDate>Sun, 04 Dec 2022 00:00:00 +0000</pubDate>
         
         <guid>https://zhengzel.github.io/categories/%E5%8D%9A%E5%AE%A2/</guid>
         <description>&lt;img src="https://zhengzel.github.io/categories/%E5%8D%9A%E5%AE%A2/blog.jpg" alt="Featured image of post 博客" /&gt;</description>
@@ -37,6 +29,14 @@
         
         <guid>https://zhengzel.github.io/categories/%E7%94%9F%E6%B4%BB/</guid>
         <description>&lt;img src="https://zhengzel.github.io/categories/%E7%94%9F%E6%B4%BB/life.jpg" alt="Featured image of post 生活" /&gt;</description>
+        </item>
+        <item>
+        <title>闲聊</title>
+        <link>https://zhengzel.github.io/categories/%E9%97%B2%E8%81%8A/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhengzel.github.io/categories/%E9%97%B2%E8%81%8A/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/categories/%E9%97%B2%E8%81%8A/gossip.jpg" alt="Featured image of post 闲聊" /&gt;</description>
         </item>
         
     </channel>

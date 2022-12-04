@@ -3,21 +3,18 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://zhengzel.github.io/</loc>
-    <lastmod>2022-12-04T12:30:22+08:00</lastmod>
-  </url><url>
-    <loc>https://zhengzel.github.io/post/</loc>
-    <lastmod>2022-12-04T12:30:22+08:00</lastmod>
-  </url><url>
-    <loc>https://zhengzel.github.io/p/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2022-12-04T12:30:22+08:00</lastmod>
+    <lastmod>2022-12-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zhengzel.github.io/categories/</loc>
     <lastmod>2022-12-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://zhengzel.github.io/p/test-chinese/</loc>
+    <loc>https://zhengzel.github.io/p/hugo-stack%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E4%B8%80/</loc>
     <lastmod>2022-12-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://zhengzel.github.io/categories/%E9%97%B2%E8%81%8A/</loc>
+    <loc>https://zhengzel.github.io/post/</loc>
+    <lastmod>2022-12-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zhengzel.github.io/categories/%E5%8D%9A%E5%AE%A2/</loc>
     <lastmod>2022-12-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zhengzel.github.io/page/</loc>
@@ -28,13 +25,13 @@
   </url><url>
     <loc>https://zhengzel.github.io/tags/</loc>
   </url><url>
-    <loc>https://zhengzel.github.io/categories/%E5%8D%9A%E5%AE%A2/</loc>
-  </url><url>
     <loc>https://zhengzel.github.io/categories/%E6%8A%80%E6%9C%AF/</loc>
   </url><url>
     <loc>https://zhengzel.github.io/categories/%E7%94%9F%E6%B4%BB/</loc>
   </url><url>
     <loc>https://zhengzel.github.io/search/</loc>
+  </url><url>
+    <loc>https://zhengzel.github.io/categories/%E9%97%B2%E8%81%8A/</loc>
   </url><url>
     <loc>https://zhengzel.github.io/%E5%8F%8B%E9%93%BE/</loc>
   </url>
