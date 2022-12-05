@@ -1,2 +1,2 @@
 # 欢迎来访
-[博客](https://zhengzel.github.io/)
+[博客地址](https://zhengzel.github.io/)
