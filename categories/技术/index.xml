@@ -5,6 +5,35 @@
         <link>https://zhengzel.github.io/categories/%E6%8A%80%E6%9C%AF/</link>
         <description>Recent content in 技术 on Satan的博客</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>zh-cn</language><atom:link href="https://zhengzel.github.io/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
+        <language>zh-cn</language>
+        <lastBuildDate>Sat, 10 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://zhengzel.github.io/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Filter(过滤器)</title>
+        <link>https://zhengzel.github.io/p/filter%E8%BF%87%E6%BB%A4%E5%99%A8/</link>
+        <pubDate>Sat, 10 Dec 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhengzel.github.io/p/filter%E8%BF%87%E6%BB%A4%E5%99%A8/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/p/filter%E8%BF%87%E6%BB%A4%E5%99%A8/background.jpg" alt="Featured image of post Filter(过滤器)" /&gt;&lt;h2 id=&#34;概念&#34;&gt;概念&lt;/h2&gt;
+&lt;p&gt;Filter : 过滤器，用来过滤网站的数据&lt;/p&gt;
+&lt;h2 id=&#34;作用&#34;&gt;作用&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;处理中文乱码&lt;/li&gt;
+&lt;li&gt;登录验证&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;流程&#34;&gt;流程&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/filter%E8%BF%87%E6%BB%A4%E5%99%A8/filter.png&#34;
+	width=&#34;842&#34;
+	height=&#34;352&#34;
+	srcset=&#34;https://zhengzel.github.io/p/filter%E8%BF%87%E6%BB%A4%E5%99%A8/filter_hub3531aae368e5b0d25125b96111fe7d5_9263_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/filter%E8%BF%87%E6%BB%A4%E5%99%A8/filter_hub3531aae368e5b0d25125b96111fe7d5_9263_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;239&#34;
+		data-flex-basis=&#34;574px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        
     </channel>
 </rss>
