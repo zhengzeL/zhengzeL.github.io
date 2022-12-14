@@ -6,10 +6,292 @@
         <description>Recent content on Satan的博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Sat, 10 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://zhengzel.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 14 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://zhengzel.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>短信发送服务</title>
+        <link>https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/</link>
+        <pubDate>Wed, 14 Dec 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/background.jpg" alt="Featured image of post 短信发送服务" /&gt;&lt;h2 id=&#34;了解阿里云用户权限操作&#34;&gt;了解阿里云用户权限操作&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/process.png&#34;
+	width=&#34;1251&#34;
+	height=&#34;451&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/process_hu9dea3ccf1dc7457be40cf48a70f30b91_41293_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/process_hu9dea3ccf1dc7457be40cf48a70f30b91_41293_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;277&#34;
+		data-flex-basis=&#34;665px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;进入accesskey管理&#34;&gt;进入Accesskey管理&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;登录阿里云，点击工作台，进入后台&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/header.png&#34;
+	width=&#34;1916&#34;
+	height=&#34;57&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/header_hu0443ad0320184b4d2b4c0a716deccbdc_10773_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/header_hu0443ad0320184b4d2b4c0a716deccbdc_10773_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;3361&#34;
+		data-flex-basis=&#34;8067px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;点击头像下方的AccessKey管理，使用子用户&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/accesskey.png&#34;
+	width=&#34;317&#34;
+	height=&#34;410&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/accesskey_huf73b60b9ab49ec7d51b499ffe1356714_15825_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/accesskey_huf73b60b9ab49ec7d51b499ffe1356714_15825_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;77&#34;
+		data-flex-basis=&#34;185px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;用户组创建与权限分配&#34;&gt;用户组创建与权限分配&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;创建用户组&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/userGroup.png&#34;
+	width=&#34;905&#34;
+	height=&#34;347&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/userGroup_hu0f1849c943739ec6a3bbedc4e03a7057_21355_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/userGroup_hu0f1849c943739ec6a3bbedc4e03a7057_21355_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;260&#34;
+		data-flex-basis=&#34;625px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;添加短信服务权限&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/permissions.png&#34;
+	width=&#34;1702&#34;
+	height=&#34;197&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/permissions_hu1dd8d586eb1770ed20ce3432d7f38382_15955_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/permissions_hu1dd8d586eb1770ed20ce3432d7f38382_15955_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;863&#34;
+		data-flex-basis=&#34;2073px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/add.png&#34;
+	width=&#34;560&#34;
+	height=&#34;254&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/add_hu794bc374e863c3ed315a0a20b515baaf_15023_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/add_hu794bc374e863c3ed315a0a20b515baaf_15023_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;220&#34;
+		data-flex-basis=&#34;529px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;用户创建&#34;&gt;用户创建&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;创建用户（注意勾选OpenAPI调用访问）添加到用户组中&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/createUser.png&#34;
+	width=&#34;765&#34;
+	height=&#34;340&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/createUser_hu3679312dce59223f89bbc46ce2462d4a_22213_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/createUser_hu3679312dce59223f89bbc46ce2462d4a_22213_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;225&#34;
+		data-flex-basis=&#34;540px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;AccessKey ID&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/key.png&#34;
+	width=&#34;1631&#34;
+	height=&#34;185&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/key_hu13869a3d6c806dbef0045d897c8160ba_16834_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/key_hu13869a3d6c806dbef0045d897c8160ba_16834_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;881&#34;
+		data-flex-basis=&#34;2115px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;开通阿里云短信服务&#34;&gt;开通阿里云短信服务&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/concept.png&#34;
+	width=&#34;565&#34;
+	height=&#34;407&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/concept_hu4a70e00d4ae95c212044ea0ecc41a67d_24720_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/concept_hu4a70e00d4ae95c212044ea0ecc41a67d_24720_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;138&#34;
+		data-flex-basis=&#34;333px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;添加签名&#34;&gt;添加签名&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;进入短信服务控制台&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/console.png&#34;
+	width=&#34;375&#34;
+	height=&#34;423&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/console_hu0dae0ce21e67beca897399c2b122a06d_22458_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/console_hu0dae0ce21e67beca897399c2b122a06d_22458_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;88&#34;
+		data-flex-basis=&#34;212px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;点击国内消息，即可添加签名&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/domestic.png&#34;
+	width=&#34;1704&#34;
+	height=&#34;413&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/domestic_hu7ca6d357f491db4cd94fdcd1d050dfea_33238_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/domestic_hu7ca6d357f491db4cd94fdcd1d050dfea_33238_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;412&#34;
+		data-flex-basis=&#34;990px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;添加签名 (无需添加【】符号，会自动添加)，注意场景说明，审核通过即可&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/explain.png&#34;
+	width=&#34;800&#34;
+	height=&#34;402&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/explain_hud48627599c83d4db8a2fb35bf3faf825_36577_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/explain_hud48627599c83d4db8a2fb35bf3faf825_36577_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;199&#34;
+		data-flex-basis=&#34;477px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;创建模板&#34;&gt;创建模板&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;模板内容可以在常用模板库中查找，场景说明注意事项同上  右侧可以预览效果，审核通过即可&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/templete.png&#34;
+	width=&#34;723&#34;
+	height=&#34;721&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/templete_hu6069f7d0a0e2ae8e00a4ed80b2339c5b_62957_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/templete_hu6069f7d0a0e2ae8e00a4ed80b2339c5b_62957_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;100&#34;
+		data-flex-basis=&#34;240px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;编写测试代码&#34;&gt;编写测试代码&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;帮助文档&lt;/strong&gt;：&lt;a class=&#34;link&#34; href=&#34;https://next.api.aliyun.com/api-tools/sdk/Dysmsapi?version=2017-05-25&amp;amp;language=java-tea&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HelpDos&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;创建springboot项目并导入依赖&#34;&gt;创建SpringBoot项目并导入依赖&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.aliyun&lt;span class=&#34;nt&#34;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;tea-openapi&lt;span class=&#34;nt&#34;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;0.2.5&lt;span class=&#34;nt&#34;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.aliyun&lt;span class=&#34;nt&#34;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;dysmsapi20170525&lt;span class=&#34;nt&#34;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;2.0.23&lt;span class=&#34;nt&#34;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
+        <title>Java真实开发规范</title>
+        <link>https://zhengzel.github.io/p/java%E7%9C%9F%E5%AE%9E%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/</link>
+        <pubDate>Tue, 13 Dec 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhengzel.github.io/p/java%E7%9C%9F%E5%AE%9E%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/p/java%E7%9C%9F%E5%AE%9E%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/background.jpg" alt="Featured image of post Java真实开发规范" /&gt;&lt;h2 id=&#34;实体类&#34;&gt;实体类&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;公共的字段，如id,createTime,updateTime,提取出来，放到一个公共的类上，其他的实体类继承&lt;/li&gt;
+&lt;li&gt;每个实体类都需要实现Serializable接口(序列化)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;url路径&#34;&gt;URL路径&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;所有的接口必须根据该接口的版本，在 /api 后添加 /v1 或其他版本号。且根据该接口的功能在随后添加功能。（例：/api/v1/auth/login）&lt;/li&gt;
+&lt;li&gt;请求方式采用 Restful 风格，例：GET POST PUT DELETE，这四种请求方式必须与业务相契合。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;数据库设计&#34;&gt;数据库设计&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;主键 Id 的类型应设为 bigint，数据库字符集应设为 utf8_mb4&lt;/li&gt;
+&lt;li&gt;每张表必须含有&lt;strong&gt;创建时间&lt;/strong&gt;与&lt;strong&gt;更新时间&lt;/strong&gt;这两个关键字段&lt;/li&gt;
+&lt;li&gt;每个字段一定要写备注&lt;/li&gt;
+&lt;li&gt;当字段设为 not null 时，应为其设置默认值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;redis&#34;&gt;Redis&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;在redisTemplete的基础上封装一个redisUtils加以利用&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>Springboot小记</title>
+        <link>https://zhengzel.github.io/p/springboot%E5%B0%8F%E8%AE%B0/</link>
+        <pubDate>Tue, 13 Dec 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhengzel.github.io/p/springboot%E5%B0%8F%E8%AE%B0/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/p/springboot%E5%B0%8F%E8%AE%B0/background.jpg" alt="Featured image of post Springboot小记" /&gt;&lt;h2 id=&#34;概念&#34;&gt;概念&lt;/h2&gt;
+&lt;p&gt;Filter : 过滤器，用来过滤网站的数据&lt;/p&gt;
+&lt;h2 id=&#34;作用&#34;&gt;作用&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;处理中文乱码&lt;/li&gt;
+&lt;li&gt;登录验证&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;流程&#34;&gt;流程&lt;/h2&gt;
+</description>
+        </item>
+        <item>
         <title>Filter(过滤器)</title>
         <link>https://zhengzel.github.io/p/filter%E8%BF%87%E6%BB%A4%E5%99%A8/</link>
-        <pubDate>Sat, 10 Dec 2022 00:00:00 +0000</pubDate>
+        <pubDate>Sun, 11 Dec 2022 00:00:00 +0000</pubDate>
         
         <guid>https://zhengzel.github.io/p/filter%E8%BF%87%E6%BB%A4%E5%99%A8/</guid>
         <description>&lt;img src="https://zhengzel.github.io/p/filter%E8%BF%87%E6%BB%A4%E5%99%A8/background.jpg" alt="Featured image of post Filter(过滤器)" /&gt;&lt;h2 id=&#34;概念&#34;&gt;概念&lt;/h2&gt;
