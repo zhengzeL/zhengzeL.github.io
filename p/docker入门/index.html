@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content=''>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='安装 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 # 1. 卸载旧的版本 yum remove docker \ docker-client \ docker-client-latest \ docker-common \ docker-latest \ docker-latest-logrotate \ docker-logrotate \ docker-engine # 2. 需要的安装包 yum install -y'>
 <title>Docker入门</title>
 
 <link rel='canonical' href='https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/'>
 
 <link rel="stylesheet" href="/scss/style.min.5be32ca3f6e1a997c75795c4359147cc6d4fbd34948c0acd51e31d237033978a.css"><meta property='og:title' content='Docker入门'>
-<meta property='og:description' content=''>
+<meta property='og:description' content='安装 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 # 1. 卸载旧的版本 yum remove docker \ docker-client \ docker-client-latest \ docker-common \ docker-latest \ docker-latest-logrotate \ docker-logrotate \ docker-engine # 2. 需要的安装包 yum install -y'>
 <meta property='og:url' content='https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/'>
 <meta property='og:site_name' content='Satan的博客'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2023-01-10T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-01-10T00:00:00&#43;00:00'/><meta property='og:image' content='https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/background.jpg' />
 <meta name="twitter:title" content="Docker入门">
-<meta name="twitter:description" content=""><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="安装 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 # 1. 卸载旧的版本 yum remove docker \ docker-client \ docker-client-latest \ docker-common \ docker-latest \ docker-latest-logrotate \ docker-logrotate \ docker-engine # 2. 需要的安装包 yum install -y"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/background.jpg' />
     <link rel="shortcut icon" href="/img/favicon.ico" />
 
@@ -206,7 +206,45 @@
     </ol>
 </aside>
 
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#安装">安装</a></li>
+    <li><a href="#卸载">卸载</a></li>
+    <li><a href="#阿里云镜像加速">阿里云镜像加速</a>
+      <ol>
+        <li><a href="#登录阿里云找到容器服务">登录阿里云找到容器服务</a></li>
+        <li><a href="#找到镜像加速地址">找到镜像加速地址</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
             <main class="main full-width">
     <article class="has-image main-article">
@@ -274,7 +312,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 0 分钟
+                    阅读时长: 1 分钟
                 </time>
             </div>
         
@@ -289,7 +327,124 @@
     <section class="article-content">
     
     
-    
+    <h2 id="安装">安装</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 1. 卸载旧的版本</span>
+</span></span><span class="line"><span class="cl">yum remove docker <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>                  docker-client <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>                  docker-client-latest <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>                  docker-common <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>                  docker-latest <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>                  docker-latest-logrotate <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>                  docker-logrotate <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>                  docker-engine
+</span></span><span class="line"><span class="cl">                  
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. 需要的安装包</span>
+</span></span><span class="line"><span class="cl">yum install -y yum-utils
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. 设置镜像的仓库</span>
+</span></span><span class="line"><span class="cl">yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 4. 更新yum软件包索引</span>
+</span></span><span class="line"><span class="cl">yum makecache fast
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 5. 安装docker相关的依赖</span>
+</span></span><span class="line"><span class="cl">yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 6. 启动docker</span>
+</span></span><span class="line"><span class="cl">systemctl start docker
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 7. 使用docker version查看是否安装成功</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 8. Hello world</span>
+</span></span><span class="line"><span class="cl">docker run hello-world
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 9. 查看一下下载的这个hello-world镜像</span>
+</span></span><span class="line"><span class="cl">docker images
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="卸载">卸载</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 1. 卸载依赖</span>
+</span></span><span class="line"><span class="cl">yum remove docker-ce docker-ce-cli containerd.io docker-compose-plugin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. 删除资源</span>
+</span></span><span class="line"><span class="cl">rm -rf /var/lib/docker <span class="c1">#docker的默认工作路径</span>
+</span></span><span class="line"><span class="cl">rm -rf /var/lib/containerd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="阿里云镜像加速">阿里云镜像加速</h2>
+<h3 id="登录阿里云找到容器服务">登录阿里云找到容器服务</h3>
+<p><img src="/p/docker%E5%85%A5%E9%97%A8/aliyun.png"
+	width="1217"
+	height="934"
+	srcset="/p/docker%E5%85%A5%E9%97%A8/aliyun_hudeb1b0821b3c63fee79ee56461982422_112704_480x0_resize_box_3.png 480w, /p/docker%E5%85%A5%E9%97%A8/aliyun_hudeb1b0821b3c63fee79ee56461982422_112704_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="130"
+		data-flex-basis="312px"
+	
+></p>
+<h3 id="找到镜像加速地址">找到镜像加速地址</h3>
+<p><img src="/p/docker%E5%85%A5%E9%97%A8/address.png"
+	width="795"
+	height="811"
+	srcset="/p/docker%E5%85%A5%E9%97%A8/address_hu6c970d286e2e16985ce048bb1a1138a1_51367_480x0_resize_box_3.png 480w, /p/docker%E5%85%A5%E9%97%A8/address_hu6c970d286e2e16985ce048bb1a1138a1_51367_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="98"
+		data-flex-basis="235px"
+	
+></p>
+
 </section>
 
 
@@ -333,6 +488,30 @@
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/linux%E5%85%A5%E9%97%A8/">
+        
+        
+            <div class="article-image">
+                <img src="/p/linux%E5%85%A5%E9%97%A8/background.d064d68ed044ec0858e54a82b95a9301_hu17c71f546c30281edc50786cb15de534_125917_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Linux入门"
+                        
+                        data-hash="md5-0GTWjtBE7AhY5UqCuVqTAQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Linux入门</h2>
+        </div>
+    </a>
+</article>
+
             
                 
 <article class="has-image">
@@ -425,30 +604,6 @@
 
         <div class="article-details">
             <h2 class="article-title">短信发送服务</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/java%E7%9C%9F%E5%AE%9E%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/">
-        
-        
-            <div class="article-image">
-                <img src="/p/java%E7%9C%9F%E5%AE%9E%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/background.e8536d22403e6e6ef69bfb09be7c32dd_hu467fe8a469c9dd15ae2f318aa21eec43_109857_250x150_fill_q75_box_smart1.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post Java真实开发规范"
-                        
-                        data-hash="md5-6FNtIkA&#43;bm72m/sJvnwy3Q==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">Java真实开发规范</h2>
         </div>
     </a>
 </article>
