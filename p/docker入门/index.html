@@ -248,7 +248,16 @@
     </li>
     <li><a href="#docker----容器命令">Docker &ndash; 容器命令</a>
       <ol>
-        <li><a href="#启动和退出容器">启动和退出容器</a></li>
+        <li><a href="#创建容器">创建容器</a></li>
+        <li><a href="#查看容器">查看容器</a></li>
+        <li><a href="#退出容器">退出容器</a></li>
+        <li><a href="#删除容器">删除容器</a></li>
+        <li><a href="#启动容器">启动容器</a></li>
+      </ol>
+    </li>
+    <li><a href="#常用的其他命令">常用的其他命令</a>
+      <ol>
+        <li><a href="#后台启动容器">后台启动容器</a></li>
       </ol>
     </li>
   </ol>
@@ -428,7 +437,7 @@
 </span></span><span class="line"><span class="cl">yum remove docker-ce docker-ce-cli containerd.io docker-compose-plugin
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 2. 删除资源</span>
-</span></span><span class="line"><span class="cl">rm -rf /var/lib/docker <span class="c1">#docker的默认工作路径</span>
+</span></span><span class="line"><span class="cl">rm -rf /var/lib/docker <span class="c1"># docker的默认工作路径</span>
 </span></span><span class="line"><span class="cl">rm -rf /var/lib/containerd
 </span></span></code></pre></td></tr></table>
 </div>
@@ -530,7 +539,7 @@
 </div>
 </div><h3 id="搜索镜像">搜索镜像</h3>
 <blockquote>
-<p>docker search 镜像名称   #搜索镜像</p>
+<p>docker search 镜像名称</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -548,13 +557,13 @@
 </span></span><span class="line"><span class="cl">mysql     MySQL is a widely used    <span class="m">13681</span>     <span class="o">[</span>OK<span class="o">]</span>       
 </span></span><span class="line"><span class="cl">mariadb   MariaDB Server is a high  <span class="m">5225</span>      <span class="o">[</span>OK<span class="o">]</span>   
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">#可选项 过滤条件</span>
-</span></span><span class="line"><span class="cl">--filter<span class="o">=</span><span class="nv">STARS</span><span class="o">=</span><span class="m">3000</span>  <span class="c1">#搜索出来的镜像的STARS大于3000的</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 可选项 过滤条件</span>
+</span></span><span class="line"><span class="cl">--filter<span class="o">=</span><span class="nv">STARS</span><span class="o">=</span><span class="m">3000</span>  <span class="c1"># 搜索出来的镜像的STARS大于3000的</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="下载镜像">下载镜像</h3>
 <blockquote>
-<p>docker pull 镜像名称   #下载镜像</p>
+<p>docker pull 镜像名称</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -629,10 +638,10 @@
 </span></span><span class="line"><span class="cl">Deleted: sha256:6682af2fb40555c448b84711c7302d0f86fc716bbe9c7dc7dbd739ef9d757150
 </span></span><span class="line"><span class="cl">Deleted: sha256:5c062c3ac20f576d24454e74781511a5f96739f289edaadf2de934d06e910b92
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">#删除多个镜像</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除多个镜像</span>
 </span></span><span class="line"><span class="cl">docker rmi -f 镜像id 镜像id 镜像id 镜像id
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">#删除所有镜像</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除所有镜像</span>
 </span></span><span class="line"><span class="cl">docker rmi -f <span class="k">$(</span>docker images -aq<span class="k">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -648,9 +657,9 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">docker pull centos
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="启动和退出容器">启动和退出容器</h3>
+</div><h3 id="创建容器">创建容器</h3>
 <blockquote>
-<p>新建容器并启动</p>
+<p>docker run [可选参数] image 启动容器</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -673,12 +682,13 @@
 </span><span class="lnt">17
 </span><span class="lnt">18
 </span><span class="lnt">19
-</span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker run <span class="o">[</span>可选参数<span class="o">]</span> image
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 新建容器并启动</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 参数说明</span>
+</span></span><span class="line"><span class="cl">docker run <span class="o">[</span>可选参数<span class="o">]</span> image
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 可选参数说明</span>
 </span></span><span class="line"><span class="cl">--name<span class="o">=</span><span class="s1">&#39;Name&#39;</span>   容器名字 tomcat01/tomcat02 用来区分容器
 </span></span><span class="line"><span class="cl">-d              后台方式运行
 </span></span><span class="line"><span class="cl">-it             使用交互方式运行，进入容器查看内容
@@ -693,9 +703,132 @@
 </span></span><span class="line"><span class="cl"><span class="o">[</span>root@2913f3a8c3b9 /<span class="o">]</span><span class="c1"># ls 查看容器内的centos</span>
 </span></span><span class="line"><span class="cl">bin  etc   lib    lost+found  mnt  proc  run   srv  tmp  var
 </span></span><span class="line"><span class="cl">dev  home  lib64  media       opt  root  sbin  sys  usr
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="查看容器">查看容器</h3>
+<blockquote>
+<p>docker ps   # 查看当前正在运行中的容器</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">[</span>root@docker /<span class="o">]</span><span class="c1"># docker ps  </span>
+</span></span><span class="line"><span class="cl">CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 退出容器</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 可选参数说明</span>
+</span></span><span class="line"><span class="cl">-a   <span class="c1"># 查看所有的容器，包括未运行的容器</span>
+</span></span><span class="line"><span class="cl">-n<span class="o">=</span>? <span class="c1"># 显示最近创建的容器，？为显示个数</span>
+</span></span><span class="line"><span class="cl">-q   <span class="c1"># 只显示容器的编号</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="退出容器">退出容器</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 直接停止容器并退出</span>
 </span></span><span class="line"><span class="cl"><span class="o">[</span>root@2913f3a8c3b9 /<span class="o">]</span><span class="c1"># exit</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 容器不停止退出</span>
+</span></span><span class="line"><span class="cl">Ctrl + P + Q
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="删除容器">删除容器</h3>
+<blockquote>
+<p>docker rm 容器ID  # 删除指定容器，不能删除正在运行的容器</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">[</span>root@docker /<span class="o">]</span><span class="c1"># docker ps -aq</span>
+</span></span><span class="line"><span class="cl">8f6cded1de29
+</span></span><span class="line"><span class="cl">2913f3a8c3b9
+</span></span><span class="line"><span class="cl">1e9519071c11
+</span></span><span class="line"><span class="cl">38e22de26669
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@docker /<span class="o">]</span><span class="c1"># docker rm 8f6cded1de29</span>
+</span></span><span class="line"><span class="cl">8f6cded1de29
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@docker /<span class="o">]</span><span class="c1"># docker ps -aq         </span>
+</span></span><span class="line"><span class="cl">2913f3a8c3b9
+</span></span><span class="line"><span class="cl">1e9519071c11
+</span></span><span class="line"><span class="cl">38e22de26669
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除所有容器</span>
+</span></span><span class="line"><span class="cl">docker rm -f <span class="k">$(</span>docker ps -aq<span class="k">)</span>
+</span></span><span class="line"><span class="cl">docker ps -a -q<span class="p">|</span>xargs docker rm
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="启动容器">启动容器</h3>
+<blockquote>
+<p>docker start 容器id</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 补充</span>
+</span></span><span class="line"><span class="cl">docker restart 容器id  <span class="c1"># 重启容器</span>
+</span></span><span class="line"><span class="cl">docker stop 容器id     <span class="c1"># 停止当前正在运行的容器</span>
+</span></span><span class="line"><span class="cl">docker <span class="nb">kill</span> 容器id     <span class="c1"># 强制停止当前容器</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="常用的其他命令">常用的其他命令</h2>
+<h3 id="后台启动容器">后台启动容器</h3>
+<blockquote>
+<p>docker run -d 镜像名</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">[</span>root@docker /<span class="o">]</span><span class="c1"># docker run -d centos</span>
+</span></span><span class="line"><span class="cl">eddc149d6e24582c1d8fe356f2d9559215f683ee10108fbeb4e4db435f7a3355
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@docker /<span class="o">]</span><span class="c1"># docker ps</span>
+</span></span><span class="line"><span class="cl">CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 问题 docker ps 发现 centos 停止了</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 常见的坑： docker 容器使用后台运行  就必须有一个前台进程</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div>
@@ -742,6 +875,30 @@
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/springcloud%E5%85%A5%E9%97%A8/">
+        
+        
+            <div class="article-image">
+                <img src="/p/springcloud%E5%85%A5%E9%97%A8/background.d8ea4d44084f85eaa21fb0ec75a48676_hufd682545f59d0350841f4e69d2319eef_543770_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post SpringCloud入门"
+                        
+                        data-hash="md5-2OpNRAhPheqiH7DsdaSGdg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">SpringCloud入门</h2>
+        </div>
+    </a>
+</article>
+
             
                 
 <article class="has-image">
@@ -834,30 +991,6 @@
 
         <div class="article-details">
             <h2 class="article-title">微服务探索</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/">
-        
-        
-            <div class="article-image">
-                <img src="/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/background.0bb8b815ecbe344cf89dd2200b515126_hu93a62d240f11e8aa3a3e3557db25aa68_54671_250x150_fill_q75_box_smart1.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post 短信发送服务"
-                        
-                        data-hash="md5-C7i4Fey&#43;NEz4ndIgC1FRJg==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">短信发送服务</h2>
         </div>
     </a>
 </article>
