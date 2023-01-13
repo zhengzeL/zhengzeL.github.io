@@ -262,6 +262,7 @@
         <li><a href="#查看容器中进程信息">查看容器中进程信息</a></li>
         <li><a href="#查看镜像的元数据">查看镜像的元数据</a></li>
         <li><a href="#进入当前正在运行的容器">进入当前正在运行的容器</a></li>
+        <li><a href="#从容器内拷贝文件到主机上">从容器内拷贝文件到主机上</a></li>
       </ol>
     </li>
   </ol>
@@ -340,7 +341,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 4 分钟
+                    阅读时长: 5 分钟
                 </time>
             </div>
         
@@ -931,7 +932,127 @@
 <blockquote>
 <p>我们通常容器都是使用后台方式运行的，需要进入容器，修改一些配置</p>
 </blockquote>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 我们通常容器都是使用后台方式运行的，需要进入容器，修改一些配置</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 进入容器方式一</span>
+</span></span><span class="line"><span class="cl">docker <span class="nb">exec</span> -it 容器id bashShell
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 进入容器方式二</span>
+</span></span><span class="line"><span class="cl">docker attach 容器id
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># docker exec     # 进入容器后开启一个新的终端，可以在里面操作</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># docker attach   # 进入容器正在执行的终端</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="从容器内拷贝文件到主机上">从容器内拷贝文件到主机上</h3>
+<blockquote>
+<p>docker cp 容器id:容器内路径   目标的主机路径</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 查看home目录下，此时home目录下只有admin</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@docker ~<span class="o">]</span><span class="c1"># cd /home</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@docker home<span class="o">]</span><span class="c1"># ls</span>
+</span></span><span class="line"><span class="cl">admin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动docker</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@docker home<span class="o">]</span><span class="c1"># systemctl start docker</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 当前的镜像</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@docker home<span class="o">]</span><span class="c1"># docker images</span>
+</span></span><span class="line"><span class="cl">REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+</span></span><span class="line"><span class="cl">centos       latest    5d0da3dc9764   <span class="m">16</span> months ago   231MB
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 新建一个容器并启动</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@docker home<span class="o">]</span><span class="c1"># docker run -it centos /bin/bash</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 进入docker容器内部</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@47b3a0402593 /<span class="o">]</span><span class="c1"># [root@docker home]# docker ps</span>
+</span></span><span class="line"><span class="cl">CONTAINER ID   IMAGE     COMMAND       CREATED          STATUS          PORTS     NAMES
+</span></span><span class="line"><span class="cl">47b3a0402593   centos    <span class="s2">&#34;/bin/bash&#34;</span>   <span class="m">48</span> seconds ago   Up <span class="m">47</span> seconds             dreamy_cerf
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@docker home<span class="o">]</span><span class="c1"># docker attach 47b3a0402593</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@47b3a0402593 /<span class="o">]</span><span class="c1"># ls</span>
+</span></span><span class="line"><span class="cl">bin  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@47b3a0402593 /<span class="o">]</span><span class="c1"># cd /home</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@47b3a0402593 home<span class="o">]</span><span class="c1"># ls</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 在容器的home目录内新建一个文件</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@47b3a0402593 home<span class="o">]</span><span class="c1"># touch test.java</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@47b3a0402593 home<span class="o">]</span><span class="c1"># ls</span>
+</span></span><span class="line"><span class="cl">test.java
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@47b3a0402593 home<span class="o">]</span><span class="c1"># exit</span>
+</span></span><span class="line"><span class="cl"><span class="nb">exit</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@docker home<span class="o">]</span><span class="c1"># docker ps</span>
+</span></span><span class="line"><span class="cl">CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@docker home<span class="o">]</span><span class="c1"># docker ps -a</span>
+</span></span><span class="line"><span class="cl">CONTAINER ID   IMAGE          COMMAND       CREATED        STATUS                      PORTS     NAMES
+</span></span><span class="line"><span class="cl">47b3a0402593   centos         <span class="s2">&#34;/bin/bash&#34;</span>   <span class="m">2</span> hours ago    Exited <span class="o">(</span>0<span class="o">)</span> <span class="m">32</span> seconds ago             dreamy_cerf
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将文件拷贝到虚拟机上的home目录</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@docker home<span class="o">]</span><span class="c1"># docker cp 47b3a0402593:/home/test.java /home</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@docker home<span class="o">]</span><span class="c1"># ls</span>
+</span></span><span class="line"><span class="cl">admin  test.java
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
 </section>
 
 
