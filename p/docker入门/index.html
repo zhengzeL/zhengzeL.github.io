@@ -237,6 +237,7 @@
       </ol>
     </li>
     <li><a href="#docker为什么比vm快">Docker为什么比vm快</a></li>
+    <li><a href="#run流程">Run流程</a></li>
     <li><a href="#docker----帮助命令">Docker &ndash; 帮助命令</a></li>
     <li><a href="#docker----镜像命令">Docker &ndash; 镜像命令</a>
       <ol>
@@ -265,6 +266,16 @@
         <li><a href="#从容器内拷贝文件到主机上">从容器内拷贝文件到主机上</a></li>
       </ol>
     </li>
+    <li><a href="#部署nginx">部署Nginx</a>
+      <ol>
+        <li><a href="#搜索镜像-1">搜索镜像</a></li>
+        <li><a href="#下载镜像-1">下载镜像</a></li>
+        <li><a href="#运行测试">运行测试</a></li>
+        <li><a href="#进入容器">进入容器</a></li>
+      </ol>
+    </li>
+    <li><a href="#部署tomcat">部署tomcat</a></li>
+    <li><a href="#部署eskibana">部署ES+Kibana</a></li>
   </ol>
 </nav>
         </div>
@@ -341,7 +352,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 5 分钟
+                    阅读时长: 7 分钟
                 </time>
             </div>
         
@@ -494,6 +505,19 @@
 ></p>
 </li>
 </ul>
+<h2 id="run流程">Run流程</h2>
+<p><img src="/p/docker%E5%85%A5%E9%97%A8/process.png"
+	width="1081"
+	height="599"
+	srcset="/p/docker%E5%85%A5%E9%97%A8/process_hude421193b368040d81dbf185ebf42aa4_67439_480x0_resize_box_3.png 480w, /p/docker%E5%85%A5%E9%97%A8/process_hude421193b368040d81dbf185ebf42aa4_67439_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="180"
+		data-flex-basis="433px"
+	
+></p>
 <h2 id="docker----帮助命令">Docker &ndash; 帮助命令</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1050,6 +1074,311 @@
 </span></span><span class="line"><span class="cl"><span class="o">[</span>root@docker home<span class="o">]</span><span class="c1"># docker cp 47b3a0402593:/home/test.java /home</span>
 </span></span><span class="line"><span class="cl"><span class="o">[</span>root@docker home<span class="o">]</span><span class="c1"># ls</span>
 </span></span><span class="line"><span class="cl">admin  test.java
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="部署nginx">部署Nginx</h2>
+<h3 id="搜索镜像-1">搜索镜像</h3>
+<blockquote>
+<p>docker search nginx 或者 在 docker Hub上搜索，可以看到帮助文档</p>
+</blockquote>
+<p>![](docker hub nginx.png)</p>
+<h3 id="下载镜像-1">下载镜像</h3>
+<blockquote>
+<p>docker pull nginx</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">[</span>root@docker ~<span class="o">]</span><span class="c1"># docker pull nginx</span>
+</span></span><span class="line"><span class="cl">Using default tag: latest
+</span></span><span class="line"><span class="cl">latest: Pulling from library/nginx
+</span></span><span class="line"><span class="cl">a2abf6c4d29d: Pull <span class="nb">complete</span> 
+</span></span><span class="line"><span class="cl">a9edb18cadd1: Pull <span class="nb">complete</span> 
+</span></span><span class="line"><span class="cl">589b7251471a: Pull <span class="nb">complete</span> 
+</span></span><span class="line"><span class="cl">186b1aaa4aa6: Pull <span class="nb">complete</span> 
+</span></span><span class="line"><span class="cl">b4df32aa5a72: Pull <span class="nb">complete</span> 
+</span></span><span class="line"><span class="cl">a0bcbecc962e: Pull <span class="nb">complete</span> 
+</span></span><span class="line"><span class="cl">Digest: sha256:0d17b565c37bcbd895e9d92315a05c1c3c9a29f762b011a10c54a66cd53c9b31
+</span></span><span class="line"><span class="cl">Status: Downloaded newer image <span class="k">for</span> nginx:latest
+</span></span><span class="line"><span class="cl">docker.io/library/nginx:latest
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="运行测试">运行测试</h3>
+<blockquote>
+<p>docker run -d &ndash;name nginx -p 3344:80 nginx</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">[</span>root@docker ~<span class="o">]</span><span class="c1"># docker images</span>
+</span></span><span class="line"><span class="cl">REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+</span></span><span class="line"><span class="cl">nginx        latest    605c77e624dd   <span class="m">12</span> months ago   141MB
+</span></span><span class="line"><span class="cl">centos       latest    5d0da3dc9764   <span class="m">16</span> months ago   231MB
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 参数说明</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -d 后台运行</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --name 给容器命名</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -p 端口暴露 宿主机端口：容器内端口</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@docker ~<span class="o">]</span><span class="c1"># docker run -d --name nginx -p 3344:80 nginx </span>
+</span></span><span class="line"><span class="cl">e25907b771ccef91c5e34472a1865c007eba33606a0acb4d738efad0ca72dc61
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@docker ~<span class="o">]</span><span class="c1"># curl localhost:3344</span>
+</span></span><span class="line"><span class="cl">&lt;!DOCTYPE html&gt;
+</span></span><span class="line"><span class="cl">&lt;html&gt;
+</span></span><span class="line"><span class="cl">&lt;head&gt;
+</span></span><span class="line"><span class="cl">&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+</span></span><span class="line"><span class="cl">&lt;style&gt;
+</span></span><span class="line"><span class="cl">html <span class="o">{</span> color-scheme: light dark<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">body <span class="o">{</span> width: 35em<span class="p">;</span> margin: <span class="m">0</span> auto<span class="p">;</span>
+</span></span><span class="line"><span class="cl">font-family: Tahoma, Verdana, Arial, sans-serif<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">&lt;/style&gt;
+</span></span><span class="line"><span class="cl">&lt;/head&gt;
+</span></span><span class="line"><span class="cl">&lt;body&gt;
+</span></span><span class="line"><span class="cl">&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+</span></span><span class="line"><span class="cl">&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+</span></span><span class="line"><span class="cl">working. Further configuration is required.&lt;/p&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;p&gt;For online documentation and support please refer to
+</span></span><span class="line"><span class="cl">&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&#34;http://nginx.org/&#34;</span>&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+</span></span><span class="line"><span class="cl">Commercial support is available at
+</span></span><span class="line"><span class="cl">&lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&#34;http://nginx.com/&#34;</span>&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;p&gt;&lt;em&gt;Thank you <span class="k">for</span> using nginx.&lt;/em&gt;&lt;/p&gt;
+</span></span><span class="line"><span class="cl">&lt;/body&gt;
+</span></span><span class="line"><span class="cl">&lt;/html&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="进入容器">进入容器</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">[</span>root@docker ~<span class="o">]</span><span class="c1"># docker exec -it nginx /bin/bash</span>
+</span></span><span class="line"><span class="cl">root@e25907b771cc:/# whereis nginx
+</span></span><span class="line"><span class="cl">nginx: /usr/sbin/nginx /usr/lib/nginx /etc/nginx /usr/share/nginx
+</span></span><span class="line"><span class="cl">root@e25907b771cc:/# <span class="nb">cd</span> /etc/nginx
+</span></span><span class="line"><span class="cl">root@e25907b771cc:/etc/nginx# ls
+</span></span><span class="line"><span class="cl">conf.d  fastcgi_params  mime.types  modules  nginx.conf  scgi_params  uwsgi_params
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="部署tomcat">部署tomcat</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 官方的使用</span>
+</span></span><span class="line"><span class="cl">docker run -it --rm tomcat:9.0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 我们之前的启动都是后台，停止了容器之后，容器还是可以查到</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># docker run -it --rm一般用来测试，用完即删</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 1.下载镜像</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># docker pull tomcat:9.0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2.启动运行</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># docker run -d --name tomcat -p 3355:8080 tomcat:9.0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3.测试访问没有问题，但是报404错误，进入容器，一探究竟</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># docker exec -it tomcat /bin/bash</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 4.发现问题</span>
+</span></span><span class="line"><span class="cl">root@bc6aaf2c5773:/usr/local/tomcat# ll                 <span class="c1"># linux命令缺失</span>
+</span></span><span class="line"><span class="cl">bash: ll: <span class="nb">command</span> not found
+</span></span><span class="line"><span class="cl">root@bc6aaf2c5773:/usr/local/tomcat# <span class="nb">cd</span> webapps/
+</span></span><span class="line"><span class="cl">root@bc6aaf2c5773:/usr/local/tomcat/webapps# ls
+</span></span><span class="line"><span class="cl">root@bc6aaf2c5773:/usr/local/tomcat/webapps#            <span class="c1"># webapps目录下为空</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 5.原因：阿里云镜像，默认是最小的镜像，所有不必要都剔除掉，保证最小可运行环境</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 6.解决方式 webapps目录下的文件可以从webapps.dist文件下拷贝</span>
+</span></span><span class="line"><span class="cl">root@bc6aaf2c5773:/usr/local/tomcat# cp -r webapps.dist/* webapps
+</span></span><span class="line"><span class="cl">root@bc6aaf2c5773:/usr/local/tomcat# <span class="nb">cd</span> webapps
+</span></span><span class="line"><span class="cl">root@bc6aaf2c5773:/usr/local/tomcat/webapps# ls
+</span></span><span class="line"><span class="cl">ROOT  docs  examples  host-manager  manager
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 7.ip+端口访问，发现能正常看到页面了</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="部署eskibana">部署ES+Kibana</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 启动 Elasticsearch，若没有这个镜像则会下载下来</span>
+</span></span><span class="line"><span class="cl">docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e <span class="s2">&#34;discovery.type=single-node&#34;</span> elasticsearch:7.6.2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>问题，ES比较占内存,所以一核2G的配置很卡，CPU占用大，所以在测试通过后，尽快关闭，解决这个问题</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 说明ES安装成功</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@docker ~<span class="o">]</span><span class="c1"># curl localhost:9200</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;name&#34;</span> : <span class="s2">&#34;08145df3cc6e&#34;</span>,
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;cluster_name&#34;</span> : <span class="s2">&#34;docker-cluster&#34;</span>,
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;cluster_uuid&#34;</span> : <span class="s2">&#34;td15eI9XTp-yIObP-XKP4w&#34;</span>,
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;version&#34;</span> : <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;number&#34;</span> : <span class="s2">&#34;7.6.2&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;build_flavor&#34;</span> : <span class="s2">&#34;default&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;build_type&#34;</span> : <span class="s2">&#34;docker&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;build_hash&#34;</span> : <span class="s2">&#34;ef48eb35cf30adf4db14086e8aabd07ef6fb113f&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;build_date&#34;</span> : <span class="s2">&#34;2020-03-26T06:34:37.794943Z&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;build_snapshot&#34;</span> : false,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;lucene_version&#34;</span> : <span class="s2">&#34;8.4.0&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;minimum_wire_compatibility_version&#34;</span> : <span class="s2">&#34;6.8.0&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;minimum_index_compatibility_version&#34;</span> : <span class="s2">&#34;6.0.0-beta1&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>,
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;tagline&#34;</span> : <span class="s2">&#34;You Know, for Search&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用docker stats查看CPU的状态，此时占用较大</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@docker ~<span class="o">]</span><span class="c1"># docker stats</span>
+</span></span><span class="line"><span class="cl">CONTAINER ID   NAME            CPU %     MEM USAGE / LIMIT     MEM %     NET I/O     BLOCK I/O         PIDS
+</span></span><span class="line"><span class="cl">ab215f92c5d1   elasticsearch   173.32%   606.9MiB / 972.3MiB   62.42%    656B / 0B   2.56GB / 73.8MB   <span class="m">19</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>解决方式  增加内存的限制，修改配置文件  -e  环境配置修改</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 参数说明 设定最小是64M，最大是512M</span>
+</span></span><span class="line"><span class="cl">docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e <span class="s2">&#34;discovery.type=single-node&#34;</span> -e  <span class="nv">ES_JAVA_OPTS</span><span class="o">=</span><span class="s2">&#34;-Xms64m -Xmx512m&#34;</span> elasticsearch:7.6.2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 查看CPU的状态 --- 发现占用率下降很多了</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@docker ~<span class="o">]</span><span class="c1"># docker stats</span>
+</span></span><span class="line"><span class="cl">CONTAINER ID   NAME            CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+</span></span><span class="line"><span class="cl">1ac5d28a7744   elasticsearch   0.15%     394.7MiB / 972.3MiB   40.59%    1.25kB / 996B   214MB / 1.66MB   <span class="m">43</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div>
