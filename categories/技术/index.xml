@@ -734,7 +734,18 @@
 &lt;blockquote&gt;
 &lt;p&gt;docker search nginx 或者 在 docker Hub上搜索，可以看到帮助文档&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;![](docker hub nginx.png)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/nginx.png&#34;
+	width=&#34;1328&#34;
+	height=&#34;169&#34;
+	srcset=&#34;https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/nginx_hu09dc40bb540ea76b6796cbbc04272d25_16188_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/nginx_hu09dc40bb540ea76b6796cbbc04272d25_16188_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;785&#34;
+		data-flex-basis=&#34;1885px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h3 id=&#34;下载镜像-1&#34;&gt;下载镜像&lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;docker pull nginx&lt;/p&gt;
