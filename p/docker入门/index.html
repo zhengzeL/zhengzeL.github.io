@@ -276,6 +276,11 @@
     </li>
     <li><a href="#部署tomcat">部署tomcat</a></li>
     <li><a href="#部署eskibana">部署ES+Kibana</a></li>
+    <li><a href="#可视化工具">可视化工具</a>
+      <ol>
+        <li><a href="#portainer">Portainer</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -1392,7 +1397,69 @@
 </span></span><span class="line"><span class="cl">1ac5d28a7744   elasticsearch   0.15%     394.7MiB / 972.3MiB   40.59%    1.25kB / 996B   214MB / 1.66MB   <span class="m">43</span>
 </span></span></code></pre></td></tr></table>
 </div>
+</div><h2 id="可视化工具">可视化工具</h2>
+<h3 id="portainer">Portainer</h3>
+<blockquote>
+<p>Docker 图形化界面管理工具，提供一个后台面板供我们操作</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 启动Portainer</span>
+</span></span><span class="line"><span class="cl">docker run -d -p 8088:9000 --name portainer <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--restart<span class="o">=</span>always -v /var/run/docker.sock:/var/run/docker.sock --privileged<span class="o">=</span><span class="nb">true</span> portainer/portainer
+</span></span></code></pre></td></tr></table>
 </div>
+</div><blockquote>
+<p>浏览器访问http://ip+端口，获取如下页面，首次登录，需要创建用户名密码</p>
+</blockquote>
+<p><img src="/p/docker%E5%85%A5%E9%97%A8/portainer.png"
+	width="1023"
+	height="730"
+	srcset="/p/docker%E5%85%A5%E9%97%A8/portainer_hu1aadedd77848c103f1bbf7c9c1dc71d5_51679_480x0_resize_box_3.png 480w, /p/docker%E5%85%A5%E9%97%A8/portainer_hu1aadedd77848c103f1bbf7c9c1dc71d5_51679_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="140"
+		data-flex-basis="336px"
+	
+></p>
+<blockquote>
+<p>下一步，选择本地</p>
+</blockquote>
+<p><img src="/p/docker%E5%85%A5%E9%97%A8/local.png"
+	width="1179"
+	height="575"
+	srcset="/p/docker%E5%85%A5%E9%97%A8/local_hu14728c156f9fc48ff38e2a6db7d0aa2e_50769_480x0_resize_box_3.png 480w, /p/docker%E5%85%A5%E9%97%A8/local_hu14728c156f9fc48ff38e2a6db7d0aa2e_50769_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="205"
+		data-flex-basis="492px"
+	
+></p>
+<blockquote>
+<p>进入面板，即可看到详细信息，例如镜像数量，容器情况等</p>
+</blockquote>
+<p><img src="/p/docker%E5%85%A5%E9%97%A8/panel.png"
+	width="1641"
+	height="560"
+	srcset="/p/docker%E5%85%A5%E9%97%A8/panel_hu52fe5111dbae524d12fd14654221052d_35834_480x0_resize_box_3.png 480w, /p/docker%E5%85%A5%E9%97%A8/panel_hu52fe5111dbae524d12fd14654221052d_35834_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="293"
+		data-flex-basis="703px"
+	
+></p>
+
 </section>
 
 
