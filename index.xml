@@ -1107,6 +1107,58 @@
 		data-flex-basis=&#34;703px&#34;
 	
 &gt;&lt;/p&gt;
+&lt;h2 id=&#34;docker镜像详解&#34;&gt;Docker镜像详解&lt;/h2&gt;
+&lt;h3 id=&#34;镜像是什么&#34;&gt;镜像是什么&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;是一种轻量化，可执行的独立软件包&lt;/li&gt;
+&lt;li&gt;用来打包软件运行环境和基于运行环境开发的软件&lt;/li&gt;
+&lt;li&gt;包括代码，运行时，库，环境变量和配置文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;所有的应用，直接打包docker镜像，就可以直接运行&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;docker镜像加载原理&#34;&gt;Docker镜像加载原理&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;UnionFS（联合文件系统）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;是一种分层，轻量级并且高性能的文件系统&lt;/li&gt;
+&lt;li&gt;一次同时加载多个文件系统，在外面看来，只能看到一个文件系统，联合加载会把各层文件系统叠加起来，这样最终的文件系统会包含所有底层的文件和目录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Docker镜像加载原理&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;docker的镜像实际上由一层一层的文件系统组成，这种层次的文件系统就是UnionFS&lt;/p&gt;
+&lt;p&gt;bootfs主要包含bootloader和kernel,bootloader主要是引导加载Kernel,Linux刚启动会加载boofs文件系统，Docker容器的最底层就是bootfs,这一层与我们典型的Linux/Unix系统是一样的，包含boot加载器和内核。当boot加载完成之后整个内核就都在内存中了，此时内存的使用权已由bootfs转交给内核，此时系统也会卸载bootfs&lt;/p&gt;
+&lt;p&gt;rootfs，在bootfs之上，包含的就是典型Linux系统中的/dev,/proc,/bin,/etc等标准目录和文件，rootfs就是各种不同的操作系统发行版，比如Ubuntu,CentOs等等&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/principle.png&#34;
+	width=&#34;899&#34;
+	height=&#34;337&#34;
+	srcset=&#34;https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/principle_hu1d8d85a4bac22c80724316d3bc640918_163896_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/principle_hu1d8d85a4bac22c80724316d3bc640918_163896_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;266&#34;
+		data-flex-basis=&#34;640px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;平时我们安装进虚拟机的CentOs通常要几个G，为什么Docker这里的才200M&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker images centos&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;centos       latest    5d0da3dc9764   &lt;span class=&#34;m&#34;&gt;16&lt;/span&gt; months ago   231MB
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;对于一个精简的OS，rootfs可以很小，只需要包含最基本的命令，工具和程序库就可以了，因为底层直接用Host的kernel,自己只需要提供rootfs就可以了。由此可见，对于不同的linux发行版，bootfs基本是一致的，只有rootfs有差别，所以它们可以公用bootfs&lt;/p&gt;
 </description>
         </item>
         <item>
