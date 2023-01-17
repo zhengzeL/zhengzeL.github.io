@@ -287,6 +287,7 @@
         <li><a href="#docker镜像加载原理">Docker镜像加载原理</a></li>
       </ol>
     </li>
+    <li><a href="#分层理解">分层理解</a></li>
   </ol>
 </nav>
         </div>
@@ -363,7 +364,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 8 分钟
+                    阅读时长: 9 分钟
                 </time>
             </div>
         
@@ -1517,7 +1518,74 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>对于一个精简的OS，rootfs可以很小，只需要包含最基本的命令，工具和程序库就可以了，因为底层直接用Host的kernel,自己只需要提供rootfs就可以了。由此可见，对于不同的linux发行版，bootfs基本是一致的，只有rootfs有差别，所以它们可以公用bootfs</p>
-
+<h2 id="分层理解">分层理解</h2>
+<blockquote>
+<p>分层的镜像</p>
+</blockquote>
+<p>我们可以去下载一个镜像，注意观察下载的日志输出，可以看到是一层一层的在下载</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">[</span>root@docker ~<span class="o">]</span><span class="c1"># docker pull redis</span>
+</span></span><span class="line"><span class="cl">Using default tag: latest
+</span></span><span class="line"><span class="cl">latest: Pulling from library/redis
+</span></span><span class="line"><span class="cl">a2abf6c4d29d: Already exists 
+</span></span><span class="line"><span class="cl">c7a4e4382001: Pull <span class="nb">complete</span> 
+</span></span><span class="line"><span class="cl">4044b9ba67c9: Pull <span class="nb">complete</span> 
+</span></span><span class="line"><span class="cl">c8388a79482f: Pull <span class="nb">complete</span> 
+</span></span><span class="line"><span class="cl">413c8bb60be2: Pull <span class="nb">complete</span> 
+</span></span><span class="line"><span class="cl">1abfd3011519: Pull <span class="nb">complete</span> 
+</span></span><span class="line"><span class="cl">Digest: sha256:db485f2e245b5b3329fdc7eff4eb00f913e09d8feb9ca720788059fdc2ed8339
+</span></span><span class="line"><span class="cl">Status: Downloaded newer image <span class="k">for</span> redis:latest
+</span></span><span class="line"><span class="cl">docker.io/library/redis:latest
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>思考！为什么</p>
+<blockquote>
+<p>使用 docker image inspect redis:latest  查看镜像的分层方式</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="s2">&#34;RootFS&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Type&#34;</span>: <span class="s2">&#34;layers&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;Layers&#34;</span>: <span class="o">[</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;sha256:2edcec3590a4ec7f40cf0743c15d78fb39d8326bc029073b41ef9727da6c851f&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;sha256:9b24afeb7c2f21e50a686ead025823cd2c6e9730c013ca77ad5f115c079b57cb&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;sha256:4b8e2801e0f956a4220c32e2c8b0a590e6f9bd2420ec65453685246b82766ea1&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;sha256:529cdb636f61e95ab91a62a51526a84fd7314d6aab0d414040796150b4522372&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;sha256:9975392591f2777d6bf4d9919ad1b2c9afa12f9a9b4d260f45025ec3cc9b18ed&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;sha256:8e5669d8329116b8444b9bbb1663dda568ede12d3dbcce950199b582f6e94952&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>,
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
 </section>
 
 
