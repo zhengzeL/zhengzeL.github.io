@@ -288,6 +288,7 @@
       </ol>
     </li>
     <li><a href="#分层理解">分层理解</a></li>
+    <li><a href="#commit镜像">commit镜像</a></li>
   </ol>
 </nav>
         </div>
@@ -364,7 +365,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 9 分钟
+                    阅读时长: 10 分钟
                 </time>
             </div>
         
@@ -1553,7 +1554,8 @@
 </span></span><span class="line"><span class="cl">docker.io/library/redis:latest
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>思考！为什么</p>
+</div><p>思考！为什么 Docker镜像要采用这种分层的结构呢？</p>
+<p>最大的好处，莫过于是资源共享了，比如有多个镜像都从相同的base镜像构建而来，那么宿主机只需在磁盘上保留一份base镜像，同时内存中也只需要加载一份base镜像，这样就可以为所有的容器服务了，而且镜像的每一层都可以被共享</p>
 <blockquote>
 <p>使用 docker image inspect redis:latest  查看镜像的分层方式</p>
 </blockquote>
@@ -1583,6 +1585,104 @@
 </span></span><span class="line"><span class="cl">        <span class="s2">&#34;sha256:8e5669d8329116b8444b9bbb1663dda568ede12d3dbcce950199b582f6e94952&#34;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>,
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>特点</p>
+</blockquote>
+<p>Docker镜像都是只读的，当容器启动时，一个新的可写层被加载到镜像的顶部！</p>
+<p>这一层就是我们通常说的容器层，容器之下都叫镜像层！</p>
+<h2 id="commit镜像">commit镜像</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker commit <span class="c1"># 提交容器成为一个新的副本</span>
+</span></span><span class="line"><span class="cl">docker commit -m<span class="o">=</span><span class="s2">&#34;提交的描述信息&#34;</span> -a<span class="o">=</span><span class="s2">&#34;作者&#34;</span> 容器id 目标镜像名:<span class="o">[</span>TAG<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 启动一个默认的tomcat</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@docker ~<span class="o">]</span><span class="c1"># docker run -it -p 8080:8080 tomcat:9.0</span>
+</span></span><span class="line"><span class="cl">Using CATALINA_BASE:   /usr/local/tomcat
+</span></span><span class="line"><span class="cl">Using CATALINA_HOME:   /usr/local/tomcat
+</span></span><span class="line"><span class="cl">Using CATALINA_TMPDIR: /usr/local/tomcat/temp
+</span></span><span class="line"><span class="cl">Using JRE_HOME:        /usr/local/openjdk-11
+</span></span><span class="line"><span class="cl">Using CLASSPATH:       /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar
+</span></span><span class="line"><span class="cl">Using CATALINA_OPTS:   
+</span></span><span class="line"><span class="cl">NOTE: Picked up JDK_JAVA_OPTIONS:  --add-opens<span class="o">=</span>java.base/java.lang<span class="o">=</span>ALL-UNNAMED --add-opens<span class="o">=</span>java.base/java.io<span class="o">=</span>ALL-UNNAMED --add-opens<span class="o">=</span>java.base/java.util<span class="o">=</span>ALL-UNNAMED --add-opens<span class="o">=</span>java.base/java.util.concurrent<span class="o">=</span>ALL-UNNAMED --add-opens<span class="o">=</span>java.rmi/sun.rmi.transport<span class="o">=</span>ALL-UNNAMED
+</span></span><span class="line"><span class="cl">INFO <span class="o">[</span>main<span class="o">]</span> org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/9.0.56
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 发现这个默认的tomcat 是没有webapps应用的 官方的镜像webapps目录下默认没有文件</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@docker ~<span class="o">]</span><span class="c1"># docker ps</span>
+</span></span><span class="line"><span class="cl">CONTAINER ID   IMAGE        COMMAND             CREATED          STATUS          PORTS          NAMES
+</span></span><span class="line"><span class="cl">0a2f11347ef5   tomcat:9.0   <span class="s2">&#34;catalina.sh run&#34;</span>   <span class="m">11</span> minutes ago   Up <span class="m">10</span> minutes   0.0.0.0:8080-&gt;8080/tcp, :::8080-&gt;8080/tcp   loving_nightingale
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@docker ~<span class="o">]</span><span class="c1"># docker exec -it 0a2f11347ef5 /bin/bash</span>
+</span></span><span class="line"><span class="cl">root@0a2f11347ef5:/usr/local/tomcat# <span class="nb">cd</span> webapps
+</span></span><span class="line"><span class="cl">root@0a2f11347ef5:/usr/local/tomcat/webapps# ls
+</span></span><span class="line"><span class="cl">root@0a2f11347ef5:/usr/local/tomcat/webapps#
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将webapps.dist目录下的文件拷贝到webapps目录下</span>
+</span></span><span class="line"><span class="cl">root@0a2f11347ef5:/usr/local/tomcat# cp -r webapps.dist/* webapps 
+</span></span><span class="line"><span class="cl">root@0a2f11347ef5:/usr/local/tomcat# <span class="nb">cd</span> webapps
+</span></span><span class="line"><span class="cl">root@0a2f11347ef5:/usr/local/tomcat/webapps# ls
+</span></span><span class="line"><span class="cl">ROOT  docs  examples  host-manager  manager
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将我们操作过的这个容器通过commit提交为一个新的镜像，我们以后就使用这个镜像即可</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@docker ~<span class="o">]</span><span class="c1"># docker commit -a=&#34;satan&#34; -m=&#34;add webapps app&#34; 0a2f11347ef5 tomcat2:2.0</span>
+</span></span><span class="line"><span class="cl">sha256:6ae624cd277319840b93a7208edb4f32cfb56dc03fd3e40db8b11f2af1e414d4
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@docker ~<span class="o">]</span><span class="c1"># docker images</span>
+</span></span><span class="line"><span class="cl">REPOSITORY            TAG       IMAGE ID       CREATED          SIZE
+</span></span><span class="line"><span class="cl">tomcat2               2.0       6ae624cd2773   <span class="m">14</span> minutes ago   685MB
+</span></span><span class="line"><span class="cl">nginx                 latest    605c77e624dd   <span class="m">12</span> months ago    141MB
+</span></span><span class="line"><span class="cl">tomcat                9.0       b8e65a4d736d   <span class="m">13</span> months ago    680MB
+</span></span><span class="line"><span class="cl">redis                 latest    7614ae9453d1   <span class="m">13</span> months ago    113MB
+</span></span><span class="line"><span class="cl">centos                latest    5d0da3dc9764   <span class="m">16</span> months ago    231MB
+</span></span><span class="line"><span class="cl">portainer/portainer   latest    580c0e4e98b0   <span class="m">22</span> months ago    79.1MB
+</span></span><span class="line"><span class="cl">elasticsearch         7.6.2     f29a1ee41030   <span class="m">2</span> years ago      791MB
 </span></span></code></pre></td></tr></table>
 </div>
 </div>
