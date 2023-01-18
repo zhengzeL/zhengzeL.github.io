@@ -289,6 +289,11 @@
     </li>
     <li><a href="#分层理解">分层理解</a></li>
     <li><a href="#commit镜像">commit镜像</a></li>
+    <li><a href="#容器数据卷">容器数据卷</a>
+      <ol>
+        <li><a href="#什么是容器数据卷">什么是容器数据卷</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -1685,7 +1690,26 @@
 </span></span><span class="line"><span class="cl">elasticsearch         7.6.2     f29a1ee41030   <span class="m">2</span> years ago      791MB
 </span></span></code></pre></td></tr></table>
 </div>
-</div>
+</div><h2 id="容器数据卷">容器数据卷</h2>
+<h3 id="什么是容器数据卷">什么是容器数据卷</h3>
+<p>回顾之前的不足</p>
+<ul>
+<li>我们的数据都在容器中，如果我们容器删除，数据就会丢失</li>
+<li>mysql数据库中的数据，如果容器删掉了，重要数据无备份</li>
+</ul>
+<p>因此，有了新的需求</p>
+<ul>
+<li>数据可以持久化</li>
+<li>mysql数据可以存储在本地</li>
+</ul>
+<p>解决方案</p>
+<ul>
+<li>容器之间有一个数据共享的技术，Docker容器中产生的数据，同步到本地</li>
+</ul>
+<blockquote>
+<p>这就是卷技术！目录的挂载，将我们容器内的目录，挂载到Linux上面！</p>
+</blockquote>
+
 </section>
 
 
