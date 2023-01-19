@@ -6,7 +6,37 @@
         <description>Recent content in Posts on Satan的博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Thu, 12 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://zhengzel.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 19 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://zhengzel.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>ElasticSearch入门</title>
+        <link>https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/</link>
+        <pubDate>Thu, 19 Jan 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/background.jpg" alt="Featured image of post ElasticSearch入门" /&gt;&lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ElasticSearch，简称为es，是一个开源的高扩展的分布式全文检索引擎&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;具有以下优点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;本身扩展性很好&lt;/li&gt;
+&lt;li&gt;能够近乎实时的存储，检索数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;与solr的差别&#34;&gt;与Solr的差别&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;es基本是开箱即用，非常简单，Solr安装则稍微复杂一点&lt;/li&gt;
+&lt;li&gt;Solr利用Zookeeper进行分布式管理，而ElasticSearch自身带有分布式协调管理功能&lt;/li&gt;
+&lt;li&gt;Solr支持更多格式的数据，比如json,xml，csv，而ElasticSearch仅支持json文件&lt;/li&gt;
+&lt;li&gt;Solr官方提供的功能更多，而Elasticsearch本身更注重于核心功能，高级功能多由第三方插件提供&lt;/li&gt;
+&lt;li&gt;Solr查询快，但更新索引时慢（即插入删除慢）,用于电商等查询多的应用&lt;/li&gt;
+&lt;li&gt;Elasticsearch实时性查询快，用于facebook新浪等搜索&lt;/li&gt;
+&lt;li&gt;Solr比较成熟，有着活跃的社区，而Elasticsearch开发维护者 较少，更新较快，学习成本较高&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Solr是传统搜索应用的有力解决方案，但Elasticsearch更适用于新兴的实时搜索应用，推荐使用ES&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        <item>
         <title>SpringCloud入门</title>
         <link>https://zhengzel.github.io/p/springcloud%E5%85%A5%E9%97%A8/</link>
         <pubDate>Thu, 12 Jan 2023 00:00:00 +0000</pubDate>
