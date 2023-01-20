@@ -34,6 +34,113 @@
 &lt;blockquote&gt;
 &lt;p&gt;Solr是传统搜索应用的有力解决方案，但Elasticsearch更适用于新兴的实时搜索应用，推荐使用ES&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;# 环境要求
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;&lt;/span&gt;JDk1.8，最低要求，保证环境是正常的
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ElasticSearch客户端，界面工具
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;# Java开发
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;&lt;/span&gt;ElasticSearch的版本和jar包版本对应
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;下载&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;官网：https://www.elastic.co/cn/&lt;/p&gt;
+&lt;p&gt;下载页：https://www.elastic.co/cn/downloads/elasticsearch&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/download.png&#34;
+	width=&#34;855&#34;
+	height=&#34;920&#34;
+	srcset=&#34;https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/download_hu9ae91407498dfa83c86296269121e9be_56840_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/download_hu9ae91407498dfa83c86296269121e9be_56840_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;92&#34;
+		data-flex-basis=&#34;223px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;windows下解压即可使用&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/directory.png&#34;
+	width=&#34;676&#34;
+	height=&#34;395&#34;
+	srcset=&#34;https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/directory_hu1e605f1c2fe3de1d6d9652d3499225fc_28226_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/directory_hu1e605f1c2fe3de1d6d9652d3499225fc_28226_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;171&#34;
+		data-flex-basis=&#34;410px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;熟悉目录&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;|____ bin     # 启动文件
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;|____ config  # 配置文件
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	|____ log4j2      		 # 日志配置
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	|____ jvm.options 		 # java虚拟机相关的配置
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	|____ elasticsearch.yml  # elasticsearch的配置文件，默认9200端口
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;|____ lib     # 相关jar包
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;|____ logs    # 日志
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;|____ modules # 功能模块
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;|____ plugins # 插件 ik分词器
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;启动Es&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;进入bin目录下启动elasticsearch.bat,启动完成后访问http://127.0.0.1:9200，出现如下界面则启动成功&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/interface.png&#34;
+	width=&#34;478&#34;
+	height=&#34;274&#34;
+	srcset=&#34;https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/interface_hu8347d356546c189414b55d320011c72e_6298_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/interface_hu8347d356546c189414b55d320011c72e_6298_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;174&#34;
+		data-flex-basis=&#34;418px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果出现无法访问的情况，可以进入elasticsearch.yml修改配置，将下面两个选项改为false&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/config.png&#34;
+	width=&#34;968&#34;
+	height=&#34;280&#34;
+	srcset=&#34;https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/config_hu992d1db6b475fb0cb89032938b37e4c0_32878_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/config_hu992d1db6b475fb0cb89032938b37e4c0_32878_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;345&#34;
+		data-flex-basis=&#34;829px&#34;
+	
+&gt;&lt;/p&gt;
 </description>
         </item>
         <item>

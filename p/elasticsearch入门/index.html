@@ -230,6 +230,7 @@
   <ol>
     <li><a href="#概述">概述</a></li>
     <li><a href="#与solr的差别">与Solr的差别</a></li>
+    <li><a href="#安装">安装</a></li>
   </ol>
 </nav>
         </div>
@@ -306,7 +307,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 1 分钟
+                    阅读时长: 2 分钟
                 </time>
             </div>
         
@@ -343,6 +344,113 @@
 <blockquote>
 <p>Solr是传统搜索应用的有力解决方案，但Elasticsearch更适用于新兴的实时搜索应用，推荐使用ES</p>
 </blockquote>
+<h2 id="安装">安装</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gh"># 环境要求
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>JDk1.8，最低要求，保证环境是正常的
+</span></span><span class="line"><span class="cl">ElasticSearch客户端，界面工具
+</span></span><span class="line"><span class="cl"><span class="gh"># Java开发
+</span></span></span><span class="line"><span class="cl"><span class="gh"></span>ElasticSearch的版本和jar包版本对应
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>下载</p>
+</blockquote>
+<p>官网：https://www.elastic.co/cn/</p>
+<p>下载页：https://www.elastic.co/cn/downloads/elasticsearch</p>
+<p><img src="/p/elasticsearch%E5%85%A5%E9%97%A8/download.png"
+	width="855"
+	height="920"
+	srcset="/p/elasticsearch%E5%85%A5%E9%97%A8/download_hu9ae91407498dfa83c86296269121e9be_56840_480x0_resize_box_3.png 480w, /p/elasticsearch%E5%85%A5%E9%97%A8/download_hu9ae91407498dfa83c86296269121e9be_56840_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="92"
+		data-flex-basis="223px"
+	
+></p>
+<blockquote>
+<p>windows下解压即可使用</p>
+</blockquote>
+<p><img src="/p/elasticsearch%E5%85%A5%E9%97%A8/directory.png"
+	width="676"
+	height="395"
+	srcset="/p/elasticsearch%E5%85%A5%E9%97%A8/directory_hu1e605f1c2fe3de1d6d9652d3499225fc_28226_480x0_resize_box_3.png 480w, /p/elasticsearch%E5%85%A5%E9%97%A8/directory_hu1e605f1c2fe3de1d6d9652d3499225fc_28226_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="171"
+		data-flex-basis="410px"
+	
+></p>
+<blockquote>
+<p>熟悉目录</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">|____ bin     # 启动文件
+</span></span><span class="line"><span class="cl">|____ config  # 配置文件
+</span></span><span class="line"><span class="cl">	|____ log4j2      		 # 日志配置
+</span></span><span class="line"><span class="cl">	|____ jvm.options 		 # java虚拟机相关的配置
+</span></span><span class="line"><span class="cl">	|____ elasticsearch.yml  # elasticsearch的配置文件，默认9200端口
+</span></span><span class="line"><span class="cl">|____ lib     # 相关jar包
+</span></span><span class="line"><span class="cl">|____ logs    # 日志
+</span></span><span class="line"><span class="cl">|____ modules # 功能模块
+</span></span><span class="line"><span class="cl">|____ plugins # 插件 ik分词器
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>启动Es</p>
+</blockquote>
+<p>进入bin目录下启动elasticsearch.bat,启动完成后访问http://127.0.0.1:9200，出现如下界面则启动成功</p>
+<p><img src="/p/elasticsearch%E5%85%A5%E9%97%A8/interface.png"
+	width="478"
+	height="274"
+	srcset="/p/elasticsearch%E5%85%A5%E9%97%A8/interface_hu8347d356546c189414b55d320011c72e_6298_480x0_resize_box_3.png 480w, /p/elasticsearch%E5%85%A5%E9%97%A8/interface_hu8347d356546c189414b55d320011c72e_6298_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="174"
+		data-flex-basis="418px"
+	
+></p>
+<blockquote>
+<p>如果出现无法访问的情况，可以进入elasticsearch.yml修改配置，将下面两个选项改为false</p>
+</blockquote>
+<p><img src="/p/elasticsearch%E5%85%A5%E9%97%A8/config.png"
+	width="968"
+	height="280"
+	srcset="/p/elasticsearch%E5%85%A5%E9%97%A8/config_hu992d1db6b475fb0cb89032938b37e4c0_32878_480x0_resize_box_3.png 480w, /p/elasticsearch%E5%85%A5%E9%97%A8/config_hu992d1db6b475fb0cb89032938b37e4c0_32878_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="345"
+		data-flex-basis="829px"
+	
+></p>
 
 </section>
 
