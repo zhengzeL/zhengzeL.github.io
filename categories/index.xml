@@ -7,12 +7,28 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <lastBuildDate>Thu, 19 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://zhengzel.github.io/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>后端</title>
+        <link>https://zhengzel.github.io/categories/%E5%90%8E%E7%AB%AF/</link>
+        <pubDate>Thu, 19 Jan 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhengzel.github.io/categories/%E5%90%8E%E7%AB%AF/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/categories/%E5%90%8E%E7%AB%AF/rearend.jpg" alt="Featured image of post 后端" /&gt;</description>
+        </item>
+        <item>
         <title>技术</title>
         <link>https://zhengzel.github.io/categories/%E6%8A%80%E6%9C%AF/</link>
         <pubDate>Thu, 19 Jan 2023 00:00:00 +0000</pubDate>
         
         <guid>https://zhengzel.github.io/categories/%E6%8A%80%E6%9C%AF/</guid>
         <description>&lt;img src="https://zhengzel.github.io/categories/%E6%8A%80%E6%9C%AF/technology.jpg" alt="Featured image of post 技术" /&gt;</description>
+        </item>
+        <item>
+        <title>开发规范</title>
+        <link>https://zhengzel.github.io/categories/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/</link>
+        <pubDate>Tue, 13 Dec 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhengzel.github.io/categories/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/categories/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/specification.jpg" alt="Featured image of post 开发规范" /&gt;</description>
         </item>
         <item>
         <title>博客</title>
@@ -23,12 +39,20 @@
         <description>&lt;img src="https://zhengzel.github.io/categories/%E5%8D%9A%E5%AE%A2/blog.jpg" alt="Featured image of post 博客" /&gt;</description>
         </item>
         <item>
-        <title>生活</title>
-        <link>https://zhengzel.github.io/categories/%E7%94%9F%E6%B4%BB/</link>
+        <title>篮球</title>
+        <link>https://zhengzel.github.io/categories/%E7%AF%AE%E7%90%83/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://zhengzel.github.io/categories/%E7%94%9F%E6%B4%BB/</guid>
-        <description>&lt;img src="https://zhengzel.github.io/categories/%E7%94%9F%E6%B4%BB/life.jpg" alt="Featured image of post 生活" /&gt;</description>
+        <guid>https://zhengzel.github.io/categories/%E7%AF%AE%E7%90%83/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/categories/%E7%AF%AE%E7%90%83/basketball.jpg" alt="Featured image of post 篮球" /&gt;</description>
+        </item>
+        <item>
+        <title>前端</title>
+        <link>https://zhengzel.github.io/categories/%E5%89%8D%E7%AB%AF/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhengzel.github.io/categories/%E5%89%8D%E7%AB%AF/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/categories/%E5%89%8D%E7%AB%AF/web.jpg" alt="Featured image of post 前端" /&gt;</description>
         </item>
         <item>
         <title>闲聊</title>

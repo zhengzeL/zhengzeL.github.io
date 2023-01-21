@@ -1,0 +1,1940 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>后端 on Satan的博客</title>
+        <link>https://zhengzel.github.io/categories/%E5%90%8E%E7%AB%AF/</link>
+        <description>Recent content in 后端 on Satan的博客</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Thu, 19 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://zhengzel.github.io/categories/%E5%90%8E%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>ElasticSearch入门</title>
+        <link>https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/</link>
+        <pubDate>Thu, 19 Jan 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/background.jpg" alt="Featured image of post ElasticSearch入门" /&gt;&lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ElasticSearch，简称为es，是一个开源的高扩展的分布式全文检索引擎&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;具有以下优点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;本身扩展性很好&lt;/li&gt;
+&lt;li&gt;能够近乎实时的存储，检索数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;与solr的差别&#34;&gt;与Solr的差别&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;es基本是开箱即用，非常简单，Solr安装则稍微复杂一点&lt;/li&gt;
+&lt;li&gt;Solr利用Zookeeper进行分布式管理，而ElasticSearch自身带有分布式协调管理功能&lt;/li&gt;
+&lt;li&gt;Solr支持更多格式的数据，比如json,xml，csv，而ElasticSearch仅支持json文件&lt;/li&gt;
+&lt;li&gt;Solr官方提供的功能更多，而Elasticsearch本身更注重于核心功能，高级功能多由第三方插件提供&lt;/li&gt;
+&lt;li&gt;Solr查询快，但更新索引时慢（即插入删除慢）,用于电商等查询多的应用&lt;/li&gt;
+&lt;li&gt;Elasticsearch实时性查询快，用于facebook新浪等搜索&lt;/li&gt;
+&lt;li&gt;Solr比较成熟，有着活跃的社区，而Elasticsearch开发维护者 较少，更新较快，学习成本较高&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Solr是传统搜索应用的有力解决方案，但Elasticsearch更适用于新兴的实时搜索应用，推荐使用ES&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;安装&#34;&gt;安装&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;# 环境要求
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;&lt;/span&gt;JDk1.8，最低要求，保证环境是正常的
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ElasticSearch客户端，界面工具
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;# Java开发
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;gh&#34;&gt;&lt;/span&gt;ElasticSearch的版本和jar包版本对应
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;下载&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;官网：https://www.elastic.co/cn/&lt;/p&gt;
+&lt;p&gt;下载页：https://www.elastic.co/cn/downloads/elasticsearch&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/download.png&#34;
+	width=&#34;855&#34;
+	height=&#34;920&#34;
+	srcset=&#34;https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/download_hu9ae91407498dfa83c86296269121e9be_56840_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/download_hu9ae91407498dfa83c86296269121e9be_56840_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;92&#34;
+		data-flex-basis=&#34;223px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;windows下解压即可使用&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/directory.png&#34;
+	width=&#34;676&#34;
+	height=&#34;395&#34;
+	srcset=&#34;https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/directory_hu1e605f1c2fe3de1d6d9652d3499225fc_28226_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/directory_hu1e605f1c2fe3de1d6d9652d3499225fc_28226_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;171&#34;
+		data-flex-basis=&#34;410px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;熟悉目录&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;|____ bin     # 启动文件
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;|____ config  # 配置文件
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	|____ log4j2      		 # 日志配置
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	|____ jvm.options 		 # java虚拟机相关的配置
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	|____ elasticsearch.yml  # elasticsearch的配置文件，默认9200端口
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;|____ lib     # 相关jar包
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;|____ logs    # 日志
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;|____ modules # 功能模块
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;|____ plugins # 插件 ik分词器
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;启动Es&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;进入bin目录下启动elasticsearch.bat,启动完成后访问http://127.0.0.1:9200，出现如下界面则启动成功&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/interface.png&#34;
+	width=&#34;478&#34;
+	height=&#34;274&#34;
+	srcset=&#34;https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/interface_hu8347d356546c189414b55d320011c72e_6298_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/interface_hu8347d356546c189414b55d320011c72e_6298_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;174&#34;
+		data-flex-basis=&#34;418px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果出现无法访问的情况，可以进入elasticsearch.yml修改配置，将下面两个选项改为false&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/config.png&#34;
+	width=&#34;968&#34;
+	height=&#34;280&#34;
+	srcset=&#34;https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/config_hu992d1db6b475fb0cb89032938b37e4c0_32878_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/config_hu992d1db6b475fb0cb89032938b37e4c0_32878_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;345&#34;
+		data-flex-basis=&#34;829px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;安装可视化界面es head的插件&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        <item>
+        <title>SpringCloud入门</title>
+        <link>https://zhengzel.github.io/p/springcloud%E5%85%A5%E9%97%A8/</link>
+        <pubDate>Thu, 12 Jan 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhengzel.github.io/p/springcloud%E5%85%A5%E9%97%A8/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/p/springcloud%E5%85%A5%E9%97%A8/background.jpg" alt="Featured image of post SpringCloud入门" /&gt;</description>
+        </item>
+        <item>
+        <title>Docker入门</title>
+        <link>https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/</link>
+        <pubDate>Tue, 10 Jan 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/background.jpg" alt="Featured image of post Docker入门" /&gt;&lt;h2 id=&#34;安装docker&#34;&gt;安装Docker&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 1. 卸载旧的版本&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum remove docker &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;                  docker-client &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;                  docker-client-latest &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;                  docker-common &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;                  docker-latest &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;                  docker-latest-logrotate &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;                  docker-logrotate &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;                  docker-engine
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 2. 需要的安装包&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum install -y yum-utils
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 3. 设置镜像的仓库&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 4. 更新yum软件包索引&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum makecache fast
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 5. 安装docker相关的依赖&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 6. 启动docker&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;systemctl start docker
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 7. 使用docker version查看是否安装成功&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 8. Hello world&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run hello-world
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 9. 查看一下下载的这个hello-world镜像&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker images
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;卸载docker&#34;&gt;卸载Docker&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 1. 卸载依赖&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;yum remove docker-ce docker-ce-cli containerd.io docker-compose-plugin
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 2. 删除资源&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;rm -rf /var/lib/docker &lt;span class=&#34;c1&#34;&gt;# docker的默认工作路径&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;rm -rf /var/lib/containerd
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;阿里云镜像加速&#34;&gt;阿里云镜像加速&lt;/h2&gt;
+&lt;h3 id=&#34;登录阿里云找到容器服务&#34;&gt;登录阿里云找到容器服务&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/aliyun.png&#34;
+	width=&#34;1217&#34;
+	height=&#34;934&#34;
+	srcset=&#34;https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/aliyun_hudeb1b0821b3c63fee79ee56461982422_112704_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/aliyun_hudeb1b0821b3c63fee79ee56461982422_112704_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;130&#34;
+		data-flex-basis=&#34;312px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;找到镜像加速地址&#34;&gt;找到镜像加速地址&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/address.png&#34;
+	width=&#34;795&#34;
+	height=&#34;811&#34;
+	srcset=&#34;https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/address_hu6c970d286e2e16985ce048bb1a1138a1_51367_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/address_hu6c970d286e2e16985ce048bb1a1138a1_51367_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;98&#34;
+		data-flex-basis=&#34;235px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;docker为什么比vm快&#34;&gt;Docker为什么比vm快&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Docker有着比虚拟机更少的抽象层&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;docker利用的是宿主机的内核，vm需要的是Guest OS&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/vm&amp;amp;docker.png&#34;
+	width=&#34;653&#34;
+	height=&#34;381&#34;
+	srcset=&#34;https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/vm&amp;amp;docker_hu70f9026d4bef334a39c76de46fdf8b38_106987_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/vm&amp;amp;docker_hu70f9026d4bef334a39c76de46fdf8b38_106987_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;171&#34;
+		data-flex-basis=&#34;411px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;run流程&#34;&gt;Run流程&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/process.png&#34;
+	width=&#34;1081&#34;
+	height=&#34;599&#34;
+	srcset=&#34;https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/process_hude421193b368040d81dbf185ebf42aa4_67439_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/process_hude421193b368040d81dbf185ebf42aa4_67439_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;180&#34;
+		data-flex-basis=&#34;433px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;docker----帮助命令&#34;&gt;Docker &amp;ndash; 帮助命令&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker version	    &lt;span class=&#34;c1&#34;&gt;# 显示docker的版本信息&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker info         &lt;span class=&#34;c1&#34;&gt;# 显示docker的系统信息，包括镜像和容器的数量&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker 命令 --help   &lt;span class=&#34;c1&#34;&gt;# 万能命令 帮助命令&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://docs.docker.com/reference/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;docker命令文档&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;docker----镜像命令&#34;&gt;Docker &amp;ndash; 镜像命令&lt;/h2&gt;
+&lt;h3 id=&#34;查看镜像&#34;&gt;查看镜像&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;docker images    #查看所有本地的主机上的镜像&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker images&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hello-world   latest    feb5d9fea6a5   &lt;span class=&#34;m&#34;&gt;15&lt;/span&gt; months ago   13.3kB
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 解释&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;REPOSITORY   镜像的仓库源
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;TAG          镜像的标签
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;IMAGE ID     镜像的id
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CREATED      镜像的创建时间
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;SIZE         镜像的大小
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;搜索镜像&#34;&gt;搜索镜像&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;docker search 镜像名称&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker search mysql&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;NAME      DESCRIPTION               STARS     OFFICIAL   AUTOMATED
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mysql     MySQL is a widely used    &lt;span class=&#34;m&#34;&gt;13681&lt;/span&gt;     &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;OK&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;       
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mariadb   MariaDB Server is a high  &lt;span class=&#34;m&#34;&gt;5225&lt;/span&gt;      &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;OK&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;   
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 可选项 过滤条件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;--filter&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;STARS&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;3000&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;# 搜索出来的镜像的STARS大于3000的&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;下载镜像&#34;&gt;下载镜像&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;docker pull 镜像名称&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker pull mysql[:tag]  可选项 tag 指定版本   &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Using default tag: latest
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;latest: Pulling from library/mysql
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;72a69066d2fe: Pull &lt;span class=&#34;nb&#34;&gt;complete&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# 分层下载，docker镜像的核心&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;93619dbc5b36: Pull &lt;span class=&#34;nb&#34;&gt;complete&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;99da31dd6142: Pull &lt;span class=&#34;nb&#34;&gt;complete&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;626033c43d70: Pull &lt;span class=&#34;nb&#34;&gt;complete&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;37d5d7efb64e: Pull &lt;span class=&#34;nb&#34;&gt;complete&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ac563158d721: Pull &lt;span class=&#34;nb&#34;&gt;complete&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;d2ba16033dad: Pull &lt;span class=&#34;nb&#34;&gt;complete&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;688ba7d5c01a: Pull &lt;span class=&#34;nb&#34;&gt;complete&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;00e060b6d11d: Pull &lt;span class=&#34;nb&#34;&gt;complete&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1c04857f594f: Pull &lt;span class=&#34;nb&#34;&gt;complete&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;4d7cfa90e6ea: Pull &lt;span class=&#34;nb&#34;&gt;complete&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;e0431212d27d: Pull &lt;span class=&#34;nb&#34;&gt;complete&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Digest: sha256:e9027fe4d91c0153429607251656806cc784e914937271037f7738bd5b8e7709
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Status: Downloaded newer image &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; mysql:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker.io/library/mysql:latest
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;删除镜像&#34;&gt;删除镜像&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;docker rmi 镜像ID  #删除指定镜像&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker rmi -f c20987f18b13&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Untagged: mysql:5.7
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Untagged: mysql@sha256:f2ad209efe9c67104167fc609cca6973c8422939491c9345270175a300419f94
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Deleted: sha256:c20987f18b130f9d144c9828df630417e2a9523148930dc3963e9d0dab302a76
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Deleted: sha256:6567396b065ee734fb2dbb80c8923324a778426dfd01969f091f1ab2d52c7989
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Deleted: sha256:0910f12649d514b471f1583a16f672ab67e3d29d9833a15dc2df50dd5536e40f
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Deleted: sha256:6682af2fb40555c448b84711c7302d0f86fc716bbe9c7dc7dbd739ef9d757150
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Deleted: sha256:5c062c3ac20f576d24454e74781511a5f96739f289edaadf2de934d06e910b92
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 删除多个镜像&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker rmi -f 镜像id 镜像id 镜像id 镜像id
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 删除所有镜像&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker rmi -f &lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;docker images -aq&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;docker----容器命令&#34;&gt;Docker &amp;ndash; 容器命令&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;说明： 有了镜像才可以创建容器，所以先下载一个centos镜像来测试学习&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker pull centos
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;创建容器&#34;&gt;创建容器&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;docker run [可选参数] image 启动容器&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 新建容器并启动&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;可选参数&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; image
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 可选参数说明&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;--name&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Name&amp;#39;&lt;/span&gt;   容器名字 tomcat01/tomcat02 用来区分容器
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-d              后台方式运行
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-it             使用交互方式运行，进入容器查看内容
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-p              指定容器的端口 -p
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -p ip:主机端口：容器端口
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -p 主机端口：容器端口
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  -p 容器端口
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-P              随机指定端口
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 测试，启动并进入容器&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker run -it centos /bin/bash&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@2913f3a8c3b9 /&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# ls 查看容器内的centos&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bin  etc   lib    lost+found  mnt  proc  run   srv  tmp  var
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dev  home  lib64  media       opt  root  sbin  sys  usr
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;查看容器&#34;&gt;查看容器&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;docker ps   # 查看当前正在运行中的容器&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker /&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker ps  &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 可选参数说明&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-a   &lt;span class=&#34;c1&#34;&gt;# 查看所有的容器，包括未运行的容器&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-n&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;? &lt;span class=&#34;c1&#34;&gt;# 显示最近创建的容器，？为显示个数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-q   &lt;span class=&#34;c1&#34;&gt;# 只显示容器的编号&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;退出容器&#34;&gt;退出容器&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 直接停止容器并退出&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@2913f3a8c3b9 /&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# exit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 容器不停止退出&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Ctrl + P + Q
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;删除容器&#34;&gt;删除容器&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;docker rm 容器ID  # 删除指定容器，不能删除正在运行的容器&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker /&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker ps -aq&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;8f6cded1de29
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2913f3a8c3b9
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1e9519071c11
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;38e22de26669
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker /&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker rm 8f6cded1de29&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;8f6cded1de29
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker /&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker ps -aq         &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;2913f3a8c3b9
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1e9519071c11
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;38e22de26669
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 删除所有容器&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker rm -f &lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;docker ps -aq&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker ps -a -q&lt;span class=&#34;p&#34;&gt;|&lt;/span&gt;xargs docker rm
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;启动容器&#34;&gt;启动容器&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;docker start 容器id&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 补充&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker restart 容器id  &lt;span class=&#34;c1&#34;&gt;# 重启容器&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker stop 容器id     &lt;span class=&#34;c1&#34;&gt;# 停止当前正在运行的容器&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker &lt;span class=&#34;nb&#34;&gt;kill&lt;/span&gt; 容器id     &lt;span class=&#34;c1&#34;&gt;# 强制停止当前容器&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;常用的其他命令&#34;&gt;常用的其他命令&lt;/h2&gt;
+&lt;h3 id=&#34;后台启动容器&#34;&gt;后台启动容器&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;docker run -d 镜像名&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker /&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker run -d centos&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;eddc149d6e24582c1d8fe356f2d9559215f683ee10108fbeb4e4db435f7a3355
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker /&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker ps&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 问题 docker ps 发现 centos 停止了&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 常见的坑： docker 容器使用后台运行  就必须有一个前台进程,docker发现没有应用，就会自动停止&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;查看日志&#34;&gt;查看日志&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;docker logs&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 显示日志&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;-tf            &lt;span class=&#34;c1&#34;&gt;# 显示日志&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;--tail number  &lt;span class=&#34;c1&#34;&gt;# 要显示的日志条数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker /&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker logs -tf --tail 10 容器id&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;查看容器中进程信息&#34;&gt;查看容器中进程信息&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;docker top 容器id&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker /&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker top e4a8c1e80579&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;UID      PID     PPID   C     STIME   TTY      TIME        CMD
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root     &lt;span class=&#34;m&#34;&gt;2942&lt;/span&gt;    &lt;span class=&#34;m&#34;&gt;2923&lt;/span&gt;   &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;     16:02  pts/0   00:00:00   /bin/bash
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;查看镜像的元数据&#34;&gt;查看镜像的元数据&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;docker inspect 容器id&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@d6e2d66837c2 /&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# [root@docker /]# docker ps&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CONTAINER ID   IMAGE     COMMAND       CREATED          STATUS          PORTS     NAMES
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;d6e2d66837c2   centos    &lt;span class=&#34;s2&#34;&gt;&amp;#34;/bin/bash&amp;#34;&lt;/span&gt;   &lt;span class=&#34;m&#34;&gt;12&lt;/span&gt; seconds ago   Up &lt;span class=&#34;m&#34;&gt;11&lt;/span&gt; seconds             thirsty_rhodes
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker /&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker inspect d6e2d66837c2&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s2&#34;&gt;&amp;#34;Id&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;d6e2d66837c219ba3250c0f45ed984cdc6dd21c8cd23372f36dac3d65dd2e981&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s2&#34;&gt;&amp;#34;Created&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;2023-01-12T08:38:21.597122836Z&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s2&#34;&gt;&amp;#34;Path&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;/bin/bash&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s2&#34;&gt;&amp;#34;Args&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;[]&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s2&#34;&gt;&amp;#34;State&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;Status&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;running&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;Running&amp;#34;&lt;/span&gt;: true,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;Paused&amp;#34;&lt;/span&gt;: false,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;Restarting&amp;#34;&lt;/span&gt;: false,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;OOMKilled&amp;#34;&lt;/span&gt;: false,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;Dead&amp;#34;&lt;/span&gt;: false,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;Pid&amp;#34;&lt;/span&gt;: 3243,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;ExitCode&amp;#34;&lt;/span&gt;: 0,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;Error&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;StartedAt&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;2023-01-12T08:38:21.896883638Z&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;s2&#34;&gt;&amp;#34;FinishedAt&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;0001-01-01T00:00:00Z&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;进入当前正在运行的容器&#34;&gt;进入当前正在运行的容器&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;我们通常容器都是使用后台方式运行的，需要进入容器，修改一些配置&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 我们通常容器都是使用后台方式运行的，需要进入容器，修改一些配置&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 进入容器方式一&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker &lt;span class=&#34;nb&#34;&gt;exec&lt;/span&gt; -it 容器id bashShell
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 进入容器方式二&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker attach 容器id
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# docker exec     # 进入容器后开启一个新的终端，可以在里面操作&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# docker attach   # 进入容器正在执行的终端&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;从容器内拷贝文件到主机上&#34;&gt;从容器内拷贝文件到主机上&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;docker cp 容器id:容器内路径   目标的主机路径&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看home目录下，此时home目录下只有admin&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# cd /home&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker home&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# ls&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;admin
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 启动docker&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker home&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# systemctl start docker&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 当前的镜像&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker home&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker images&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;centos       latest    5d0da3dc9764   &lt;span class=&#34;m&#34;&gt;16&lt;/span&gt; months ago   231MB
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 新建一个容器并启动&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker home&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker run -it centos /bin/bash&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 进入docker容器内部&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@47b3a0402593 /&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# [root@docker home]# docker ps&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CONTAINER ID   IMAGE     COMMAND       CREATED          STATUS          PORTS     NAMES
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;47b3a0402593   centos    &lt;span class=&#34;s2&#34;&gt;&amp;#34;/bin/bash&amp;#34;&lt;/span&gt;   &lt;span class=&#34;m&#34;&gt;48&lt;/span&gt; seconds ago   Up &lt;span class=&#34;m&#34;&gt;47&lt;/span&gt; seconds             dreamy_cerf
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker home&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker attach 47b3a0402593&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@47b3a0402593 /&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# ls&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bin  dev  etc  home  lib  lib64  lost+found  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@47b3a0402593 /&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# cd /home&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@47b3a0402593 home&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# ls&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 在容器的home目录内新建一个文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@47b3a0402593 home&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# touch test.java&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@47b3a0402593 home&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# ls&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;test.java
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@47b3a0402593 home&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# exit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker home&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker ps&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker home&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker ps -a&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CONTAINER ID   IMAGE          COMMAND       CREATED        STATUS                      PORTS     NAMES
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;47b3a0402593   centos         &lt;span class=&#34;s2&#34;&gt;&amp;#34;/bin/bash&amp;#34;&lt;/span&gt;   &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; hours ago    Exited &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;0&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;32&lt;/span&gt; seconds ago             dreamy_cerf
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 将文件拷贝到虚拟机上的home目录&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker home&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker cp 47b3a0402593:/home/test.java /home&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker home&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# ls&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;admin  test.java
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;部署nginx&#34;&gt;部署Nginx&lt;/h2&gt;
+&lt;h3 id=&#34;搜索镜像-1&#34;&gt;搜索镜像&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;docker search nginx 或者 在 docker Hub上搜索，可以看到帮助文档&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/nginx.png&#34;
+	width=&#34;1328&#34;
+	height=&#34;169&#34;
+	srcset=&#34;https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/nginx_hu09dc40bb540ea76b6796cbbc04272d25_16188_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/nginx_hu09dc40bb540ea76b6796cbbc04272d25_16188_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;785&#34;
+		data-flex-basis=&#34;1885px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;下载镜像-1&#34;&gt;下载镜像&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;docker pull nginx&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker pull nginx&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Using default tag: latest
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;latest: Pulling from library/nginx
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;a2abf6c4d29d: Pull &lt;span class=&#34;nb&#34;&gt;complete&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;a9edb18cadd1: Pull &lt;span class=&#34;nb&#34;&gt;complete&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;589b7251471a: Pull &lt;span class=&#34;nb&#34;&gt;complete&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;186b1aaa4aa6: Pull &lt;span class=&#34;nb&#34;&gt;complete&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;b4df32aa5a72: Pull &lt;span class=&#34;nb&#34;&gt;complete&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;a0bcbecc962e: Pull &lt;span class=&#34;nb&#34;&gt;complete&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Digest: sha256:0d17b565c37bcbd895e9d92315a05c1c3c9a29f762b011a10c54a66cd53c9b31
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Status: Downloaded newer image &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; nginx:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker.io/library/nginx:latest
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;运行测试&#34;&gt;运行测试&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;docker run -d &amp;ndash;name nginx -p 3344:80 nginx&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker images&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nginx        latest    605c77e624dd   &lt;span class=&#34;m&#34;&gt;12&lt;/span&gt; months ago   141MB
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;centos       latest    5d0da3dc9764   &lt;span class=&#34;m&#34;&gt;16&lt;/span&gt; months ago   231MB
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 参数说明&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# -d 后台运行&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# --name 给容器命名&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# -p 端口暴露 宿主机端口：容器内端口&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker run -d --name nginx -p 3344:80 nginx &lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;e25907b771ccef91c5e34472a1865c007eba33606a0acb4d738efad0ca72dc61
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# curl localhost:3344&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;html&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;head&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;title&amp;gt;Welcome to nginx!&amp;lt;/title&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;style&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;html &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt; color-scheme: light dark&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;body &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt; width: 35em&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; margin: &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; auto&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;font-family: Tahoma, Verdana, Arial, sans-serif&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;/style&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;/head&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;body&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;h1&amp;gt;Welcome to nginx!&amp;lt;/h1&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;p&amp;gt;If you see this page, the nginx web server is successfully installed and
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;working. Further configuration is required.&amp;lt;/p&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;p&amp;gt;For online documentation and support please refer to
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;a &lt;span class=&#34;nv&#34;&gt;href&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;http://nginx.org/&amp;#34;&lt;/span&gt;&amp;gt;nginx.org&amp;lt;/a&amp;gt;.&amp;lt;br/&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Commercial support is available at
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;a &lt;span class=&#34;nv&#34;&gt;href&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;http://nginx.com/&amp;#34;&lt;/span&gt;&amp;gt;nginx.com&amp;lt;/a&amp;gt;.&amp;lt;/p&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;p&amp;gt;&amp;lt;em&amp;gt;Thank you &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; using nginx.&amp;lt;/em&amp;gt;&amp;lt;/p&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;/body&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;lt;/html&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;进入容器&#34;&gt;进入容器&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker exec -it nginx /bin/bash&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root@e25907b771cc:/# whereis nginx
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nginx: /usr/sbin/nginx /usr/lib/nginx /etc/nginx /usr/share/nginx
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root@e25907b771cc:/# &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; /etc/nginx
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root@e25907b771cc:/etc/nginx# ls
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;conf.d  fastcgi_params  mime.types  modules  nginx.conf  scgi_params  uwsgi_params
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;部署tomcat&#34;&gt;部署tomcat&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 官方的使用&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run -it --rm tomcat:9.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 我们之前的启动都是后台，停止了容器之后，容器还是可以查到&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# docker run -it --rm一般用来测试，用完即删&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 1.下载镜像&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# docker pull tomcat:9.0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 2.启动运行&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# docker run -d --name tomcat -p 3355:8080 tomcat:9.0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 3.测试访问没有问题，但是报404错误，进入容器，一探究竟&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# docker exec -it tomcat /bin/bash&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 4.发现问题&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root@bc6aaf2c5773:/usr/local/tomcat# ll                 &lt;span class=&#34;c1&#34;&gt;# linux命令缺失&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bash: ll: &lt;span class=&#34;nb&#34;&gt;command&lt;/span&gt; not found
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root@bc6aaf2c5773:/usr/local/tomcat# &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; webapps/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root@bc6aaf2c5773:/usr/local/tomcat/webapps# ls
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root@bc6aaf2c5773:/usr/local/tomcat/webapps#            &lt;span class=&#34;c1&#34;&gt;# webapps目录下为空&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 5.原因：阿里云镜像，默认是最小的镜像，所有不必要都剔除掉，保证最小可运行环境&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 6.解决方式 webapps目录下的文件可以从webapps.dist文件下拷贝&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root@bc6aaf2c5773:/usr/local/tomcat# cp -r webapps.dist/* webapps
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root@bc6aaf2c5773:/usr/local/tomcat# &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; webapps
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root@bc6aaf2c5773:/usr/local/tomcat/webapps# ls
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ROOT  docs  examples  host-manager  manager
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 7.ip+端口访问，发现能正常看到页面了&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;部署eskibana&#34;&gt;部署ES+Kibana&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 启动 Elasticsearch，若没有这个镜像则会下载下来&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e &lt;span class=&#34;s2&#34;&gt;&amp;#34;discovery.type=single-node&amp;#34;&lt;/span&gt; elasticsearch:7.6.2
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;问题，ES比较占内存,所以一核2G的配置很卡，CPU占用大，所以在测试通过后，尽快关闭，解决这个问题&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 说明ES安装成功&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# curl localhost:9200&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;s2&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt; : &lt;span class=&#34;s2&#34;&gt;&amp;#34;08145df3cc6e&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;s2&#34;&gt;&amp;#34;cluster_name&amp;#34;&lt;/span&gt; : &lt;span class=&#34;s2&#34;&gt;&amp;#34;docker-cluster&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;s2&#34;&gt;&amp;#34;cluster_uuid&amp;#34;&lt;/span&gt; : &lt;span class=&#34;s2&#34;&gt;&amp;#34;td15eI9XTp-yIObP-XKP4w&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;s2&#34;&gt;&amp;#34;version&amp;#34;&lt;/span&gt; : &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;number&amp;#34;&lt;/span&gt; : &lt;span class=&#34;s2&#34;&gt;&amp;#34;7.6.2&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;build_flavor&amp;#34;&lt;/span&gt; : &lt;span class=&#34;s2&#34;&gt;&amp;#34;default&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;build_type&amp;#34;&lt;/span&gt; : &lt;span class=&#34;s2&#34;&gt;&amp;#34;docker&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;build_hash&amp;#34;&lt;/span&gt; : &lt;span class=&#34;s2&#34;&gt;&amp;#34;ef48eb35cf30adf4db14086e8aabd07ef6fb113f&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;build_date&amp;#34;&lt;/span&gt; : &lt;span class=&#34;s2&#34;&gt;&amp;#34;2020-03-26T06:34:37.794943Z&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;build_snapshot&amp;#34;&lt;/span&gt; : false,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;lucene_version&amp;#34;&lt;/span&gt; : &lt;span class=&#34;s2&#34;&gt;&amp;#34;8.4.0&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;minimum_wire_compatibility_version&amp;#34;&lt;/span&gt; : &lt;span class=&#34;s2&#34;&gt;&amp;#34;6.8.0&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;minimum_index_compatibility_version&amp;#34;&lt;/span&gt; : &lt;span class=&#34;s2&#34;&gt;&amp;#34;6.0.0-beta1&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;s2&#34;&gt;&amp;#34;tagline&amp;#34;&lt;/span&gt; : &lt;span class=&#34;s2&#34;&gt;&amp;#34;You Know, for Search&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 使用docker stats查看CPU的状态，此时占用较大&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker stats&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CONTAINER ID   NAME            CPU %     MEM USAGE / LIMIT     MEM %     NET I/O     BLOCK I/O         PIDS
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ab215f92c5d1   elasticsearch   173.32%   606.9MiB / 972.3MiB   62.42%    656B / 0B   2.56GB / 73.8MB   &lt;span class=&#34;m&#34;&gt;19&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;解决方式  增加内存的限制，修改配置文件  -e  环境配置修改&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 参数说明 设定最小是64M，最大是512M&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run -d --name elasticsearch --net somenetwork -p 9200:9200 -p 9300:9300 -e &lt;span class=&#34;s2&#34;&gt;&amp;#34;discovery.type=single-node&amp;#34;&lt;/span&gt; -e  &lt;span class=&#34;nv&#34;&gt;ES_JAVA_OPTS&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;-Xms64m -Xmx512m&amp;#34;&lt;/span&gt; elasticsearch:7.6.2
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看CPU的状态 --- 发现占用率下降很多了&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker stats&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CONTAINER ID   NAME            CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1ac5d28a7744   elasticsearch   0.15%     394.7MiB / 972.3MiB   40.59%    1.25kB / 996B   214MB / 1.66MB   &lt;span class=&#34;m&#34;&gt;43&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;可视化工具&#34;&gt;可视化工具&lt;/h2&gt;
+&lt;h3 id=&#34;portainer&#34;&gt;Portainer&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Docker 图形化界面管理工具，提供一个后台面板供我们操作&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 启动Portainer&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker run -d -p 8088:9000 --name portainer &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;--restart&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;always -v /var/run/docker.sock:/var/run/docker.sock --privileged&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;true&lt;/span&gt; portainer/portainer
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;浏览器访问http://ip+端口，获取如下页面，首次登录，需要创建用户名密码&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/portainer.png&#34;
+	width=&#34;1023&#34;
+	height=&#34;730&#34;
+	srcset=&#34;https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/portainer_hu1aadedd77848c103f1bbf7c9c1dc71d5_51679_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/portainer_hu1aadedd77848c103f1bbf7c9c1dc71d5_51679_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;140&#34;
+		data-flex-basis=&#34;336px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;下一步，选择本地&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/local.png&#34;
+	width=&#34;1179&#34;
+	height=&#34;575&#34;
+	srcset=&#34;https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/local_hu14728c156f9fc48ff38e2a6db7d0aa2e_50769_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/local_hu14728c156f9fc48ff38e2a6db7d0aa2e_50769_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;205&#34;
+		data-flex-basis=&#34;492px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;进入面板，即可看到详细信息，例如镜像数量，容器情况等&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/panel.png&#34;
+	width=&#34;1641&#34;
+	height=&#34;560&#34;
+	srcset=&#34;https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/panel_hu52fe5111dbae524d12fd14654221052d_35834_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/panel_hu52fe5111dbae524d12fd14654221052d_35834_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;293&#34;
+		data-flex-basis=&#34;703px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;docker镜像详解&#34;&gt;Docker镜像详解&lt;/h2&gt;
+&lt;h3 id=&#34;镜像是什么&#34;&gt;镜像是什么&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;是一种轻量化，可执行的独立软件包&lt;/li&gt;
+&lt;li&gt;用来打包软件运行环境和基于运行环境开发的软件&lt;/li&gt;
+&lt;li&gt;包括代码，运行时，库，环境变量和配置文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;所有的应用，直接打包docker镜像，就可以直接运行&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;docker镜像加载原理&#34;&gt;Docker镜像加载原理&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;UnionFS（联合文件系统）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;是一种分层，轻量级并且高性能的文件系统&lt;/li&gt;
+&lt;li&gt;一次同时加载多个文件系统，在外面看来，只能看到一个文件系统，联合加载会把各层文件系统叠加起来，这样最终的文件系统会包含所有底层的文件和目录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Docker镜像加载原理&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;docker的镜像实际上由一层一层的文件系统组成，这种层次的文件系统就是UnionFS&lt;/p&gt;
+&lt;p&gt;bootfs主要包含bootloader和kernel,bootloader主要是引导加载Kernel,Linux刚启动会加载boofs文件系统，Docker容器的最底层就是bootfs,这一层与我们典型的Linux/Unix系统是一样的，包含boot加载器和内核。当boot加载完成之后整个内核就都在内存中了，此时内存的使用权已由bootfs转交给内核，此时系统也会卸载bootfs&lt;/p&gt;
+&lt;p&gt;rootfs，在bootfs之上，包含的就是典型Linux系统中的/dev,/proc,/bin,/etc等标准目录和文件，rootfs就是各种不同的操作系统发行版，比如Ubuntu,CentOs等等&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/principle.png&#34;
+	width=&#34;899&#34;
+	height=&#34;337&#34;
+	srcset=&#34;https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/principle_hu1d8d85a4bac22c80724316d3bc640918_163896_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/docker%E5%85%A5%E9%97%A8/principle_hu1d8d85a4bac22c80724316d3bc640918_163896_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;266&#34;
+		data-flex-basis=&#34;640px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;平时我们安装进虚拟机的CentOs通常要几个G，为什么Docker这里的才200M&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker images centos&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;centos       latest    5d0da3dc9764   &lt;span class=&#34;m&#34;&gt;16&lt;/span&gt; months ago   231MB
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;对于一个精简的OS，rootfs可以很小，只需要包含最基本的命令，工具和程序库就可以了，因为底层直接用Host的kernel,自己只需要提供rootfs就可以了。由此可见，对于不同的linux发行版，bootfs基本是一致的，只有rootfs有差别，所以它们可以公用bootfs&lt;/p&gt;
+&lt;h2 id=&#34;分层理解&#34;&gt;分层理解&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;分层的镜像&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我们可以去下载一个镜像，注意观察下载的日志输出，可以看到是一层一层的在下载&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker pull redis&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Using default tag: latest
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;latest: Pulling from library/redis
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;a2abf6c4d29d: Already exists 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;c7a4e4382001: Pull &lt;span class=&#34;nb&#34;&gt;complete&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;4044b9ba67c9: Pull &lt;span class=&#34;nb&#34;&gt;complete&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;c8388a79482f: Pull &lt;span class=&#34;nb&#34;&gt;complete&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;413c8bb60be2: Pull &lt;span class=&#34;nb&#34;&gt;complete&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;1abfd3011519: Pull &lt;span class=&#34;nb&#34;&gt;complete&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Digest: sha256:db485f2e245b5b3329fdc7eff4eb00f913e09d8feb9ca720788059fdc2ed8339
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Status: Downloaded newer image &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; redis:latest
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker.io/library/redis:latest
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;思考！为什么 Docker镜像要采用这种分层的结构呢？&lt;/p&gt;
+&lt;p&gt;最大的好处，莫过于是资源共享了，比如有多个镜像都从相同的base镜像构建而来，那么宿主机只需在磁盘上保留一份base镜像，同时内存中也只需要加载一份base镜像，这样就可以为所有的容器服务了，而且镜像的每一层都可以被共享&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;使用 docker image inspect redis:latest  查看镜像的分层方式&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;RootFS&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;Type&amp;#34;&lt;/span&gt;: &lt;span class=&#34;s2&#34;&gt;&amp;#34;layers&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;s2&#34;&gt;&amp;#34;Layers&amp;#34;&lt;/span&gt;: &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s2&#34;&gt;&amp;#34;sha256:2edcec3590a4ec7f40cf0743c15d78fb39d8326bc029073b41ef9727da6c851f&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s2&#34;&gt;&amp;#34;sha256:9b24afeb7c2f21e50a686ead025823cd2c6e9730c013ca77ad5f115c079b57cb&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s2&#34;&gt;&amp;#34;sha256:4b8e2801e0f956a4220c32e2c8b0a590e6f9bd2420ec65453685246b82766ea1&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s2&#34;&gt;&amp;#34;sha256:529cdb636f61e95ab91a62a51526a84fd7314d6aab0d414040796150b4522372&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s2&#34;&gt;&amp;#34;sha256:9975392591f2777d6bf4d9919ad1b2c9afa12f9a9b4d260f45025ec3cc9b18ed&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;s2&#34;&gt;&amp;#34;sha256:8e5669d8329116b8444b9bbb1663dda568ede12d3dbcce950199b582f6e94952&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;特点&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Docker镜像都是只读的，当容器启动时，一个新的可写层被加载到镜像的顶部！&lt;/p&gt;
+&lt;p&gt;这一层就是我们通常说的容器层，容器之下都叫镜像层！&lt;/p&gt;
+&lt;h2 id=&#34;commit镜像&#34;&gt;commit镜像&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker commit &lt;span class=&#34;c1&#34;&gt;# 提交容器成为一个新的副本&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;docker commit -m&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;提交的描述信息&amp;#34;&lt;/span&gt; -a&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;作者&amp;#34;&lt;/span&gt; 容器id 目标镜像名:&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;TAG&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 启动一个默认的tomcat&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker run -it -p 8080:8080 tomcat:9.0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Using CATALINA_BASE:   /usr/local/tomcat
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Using CATALINA_HOME:   /usr/local/tomcat
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Using CATALINA_TMPDIR: /usr/local/tomcat/temp
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Using JRE_HOME:        /usr/local/openjdk-11
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Using CLASSPATH:       /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Using CATALINA_OPTS:   
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;NOTE: Picked up JDK_JAVA_OPTIONS:  --add-opens&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;java.base/java.lang&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ALL-UNNAMED --add-opens&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;java.base/java.io&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ALL-UNNAMED --add-opens&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;java.base/java.util&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ALL-UNNAMED --add-opens&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;java.base/java.util.concurrent&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ALL-UNNAMED --add-opens&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;java.rmi/sun.rmi.transport&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;ALL-UNNAMED
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;INFO &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;main&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/9.0.56
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 发现这个默认的tomcat 是没有webapps应用的 官方的镜像webapps目录下默认没有文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker ps&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;CONTAINER ID   IMAGE        COMMAND             CREATED          STATUS          PORTS          NAMES
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;0a2f11347ef5   tomcat:9.0   &lt;span class=&#34;s2&#34;&gt;&amp;#34;catalina.sh run&amp;#34;&lt;/span&gt;   &lt;span class=&#34;m&#34;&gt;11&lt;/span&gt; minutes ago   Up &lt;span class=&#34;m&#34;&gt;10&lt;/span&gt; minutes   0.0.0.0:8080-&amp;gt;8080/tcp, :::8080-&amp;gt;8080/tcp   loving_nightingale
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker exec -it 0a2f11347ef5 /bin/bash&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root@0a2f11347ef5:/usr/local/tomcat# &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; webapps
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root@0a2f11347ef5:/usr/local/tomcat/webapps# ls
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root@0a2f11347ef5:/usr/local/tomcat/webapps#
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 将webapps.dist目录下的文件拷贝到webapps目录下&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root@0a2f11347ef5:/usr/local/tomcat# cp -r webapps.dist/* webapps 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root@0a2f11347ef5:/usr/local/tomcat# &lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; webapps
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;root@0a2f11347ef5:/usr/local/tomcat/webapps# ls
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ROOT  docs  examples  host-manager  manager
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 将我们操作过的这个容器通过commit提交为一个新的镜像，我们以后就使用这个镜像即可&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker commit -a=&amp;#34;satan&amp;#34; -m=&amp;#34;add webapps app&amp;#34; 0a2f11347ef5 tomcat2:2.0&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sha256:6ae624cd277319840b93a7208edb4f32cfb56dc03fd3e40db8b11f2af1e414d4
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;root@docker ~&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# docker images&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;REPOSITORY            TAG       IMAGE ID       CREATED          SIZE
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tomcat2               2.0       6ae624cd2773   &lt;span class=&#34;m&#34;&gt;14&lt;/span&gt; minutes ago   685MB
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nginx                 latest    605c77e624dd   &lt;span class=&#34;m&#34;&gt;12&lt;/span&gt; months ago    141MB
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tomcat                9.0       b8e65a4d736d   &lt;span class=&#34;m&#34;&gt;13&lt;/span&gt; months ago    680MB
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;redis                 latest    7614ae9453d1   &lt;span class=&#34;m&#34;&gt;13&lt;/span&gt; months ago    113MB
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;centos                latest    5d0da3dc9764   &lt;span class=&#34;m&#34;&gt;16&lt;/span&gt; months ago    231MB
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;portainer/portainer   latest    580c0e4e98b0   &lt;span class=&#34;m&#34;&gt;22&lt;/span&gt; months ago    79.1MB
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;elasticsearch         7.6.2     f29a1ee41030   &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; years ago      791MB
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;容器数据卷&#34;&gt;容器数据卷&lt;/h2&gt;
+&lt;h3 id=&#34;什么是容器数据卷&#34;&gt;什么是容器数据卷&lt;/h3&gt;
+&lt;p&gt;回顾之前的不足&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;我们的数据都在容器中，如果我们容器删除，数据就会丢失&lt;/li&gt;
+&lt;li&gt;mysql数据库中的数据，如果容器删掉了，重要数据无备份&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因此，有了新的需求&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数据可以持久化&lt;/li&gt;
+&lt;li&gt;mysql数据可以存储在本地&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;解决方案&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;容器之间有一个数据共享的技术，Docker容器中产生的数据，同步到本地&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这就是卷技术！目录的挂载，将我们容器内的目录，挂载到Linux上面！&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        <item>
+        <title>Linux入门</title>
+        <link>https://zhengzel.github.io/p/linux%E5%85%A5%E9%97%A8/</link>
+        <pubDate>Tue, 10 Jan 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhengzel.github.io/p/linux%E5%85%A5%E9%97%A8/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/p/linux%E5%85%A5%E9%97%A8/background.jpg" alt="Featured image of post Linux入门" /&gt;&lt;blockquote&gt;
+&lt;p&gt;命令行前加sudo，可以加权，普通用户可以执行一些root的操作，root用户则无需使用&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        <item>
+        <title>设计模式入门</title>
+        <link>https://zhengzel.github.io/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%85%A5%E9%97%A8/</link>
+        <pubDate>Fri, 30 Dec 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhengzel.github.io/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%85%A5%E9%97%A8/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%85%A5%E9%97%A8/background.jpg" alt="Featured image of post 设计模式入门" /&gt;&lt;h2 id=&#34;本质&#34;&gt;本质&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;是面向对象设计原则的实际运用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;优点&#34;&gt;优点&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;可以提高程序员的思维能力，编程能力和设计能力&lt;/li&gt;
+&lt;li&gt;使程序设计更加标准化，代码编制更加工程化，软件开发效率大大提高，缩短了项目的开发周期&lt;/li&gt;
+&lt;li&gt;使设计的代码可复用性高，可读性强，可靠性高，灵活性好，可维护性强&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;gof23&#34;&gt;GoF23&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;创建型模式：&lt;strong&gt;&lt;!-- raw HTML omitted --&gt;单例模式&lt;!-- raw HTML omitted --&gt;&lt;/strong&gt;，&lt;strong&gt;&lt;!-- raw HTML omitted --&gt;工厂模式&lt;!-- raw HTML omitted --&gt;&lt;/strong&gt;，抽象工厂模式，建造者模式，原型模式&lt;/li&gt;
+&lt;li&gt;结构型模式：&lt;strong&gt;&lt;!-- raw HTML omitted --&gt;适配器模式&lt;!-- raw HTML omitted --&gt;&lt;/strong&gt;，桥接模式，装饰模式，组合模式，外观模式，享元模式，&lt;strong&gt;&lt;!-- raw HTML omitted --&gt;代理模式&lt;!-- raw HTML omitted --&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;行为型模式：&lt;strong&gt;&lt;!-- raw HTML omitted --&gt;模板方法模式&lt;!-- raw HTML omitted --&gt;&lt;/strong&gt;，命令模式，迭代器模式，观察者模式，中介者模式，备忘录模式，解释器模式,状态模式，&lt;strong&gt;&lt;!-- raw HTML omitted --&gt;策略模式&lt;!-- raw HTML omitted --&gt;&lt;/strong&gt;，职责链模式，访问者模式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;oop七大原则&#34;&gt;OOP七大原则&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;开闭原则：对扩展开放，对修改关闭（新增功能块不影响其他功能块的工作，能独立的工作）&lt;/li&gt;
+&lt;li&gt;里氏替换原则：继承必须确保父类所拥有的性质在子类中仍然成立(子类尽量不要重写父类的方法，要在原有的基础上扩展)&lt;/li&gt;
+&lt;li&gt;依赖倒置原则：要面向接口编程，不要面向实现编程&lt;/li&gt;
+&lt;li&gt;单一职责原则：控制类的粒度大小，将对象解耦，提高其内聚性(一个方法尽量做一件事情 )&lt;/li&gt;
+&lt;li&gt;接口隔离原则：要为各个类建立它们需要的专用接口&lt;/li&gt;
+&lt;li&gt;迪米特法则：只和你的直接朋友交谈，不跟 “ 陌生人” 讲话&lt;/li&gt;
+&lt;li&gt;合成复用原则：尽量先使用组合或者聚合等关联关系来实现，其次才考虑使用继承关系来实现&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;单例模式&#34;&gt;单例模式&lt;/h2&gt;
+&lt;h3 id=&#34;饿汉式单例&#34;&gt;饿汉式单例&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;可能会浪费空间&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;懒汉式单例&#34;&gt;懒汉式单例&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;解决了饿汉式的弊端，在需要用的时候，再加载需要的对象&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;工厂模式&#34;&gt;工厂模式&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;核心本质：实例化对象不使用new,用工厂方法替代&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;简单工厂模式&lt;/li&gt;
+&lt;li&gt;工厂方法模式&lt;/li&gt;
+&lt;li&gt;抽象工厂模式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;简单工厂模式静态工厂模式&#34;&gt;简单工厂模式(静态工厂模式)&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;对于增加的新的产品，需要覆盖已有代码&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;！虽然某种程度上不符合设计原则，但实际使用最多&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;工厂方法模式&#34;&gt;工厂方法模式&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在不修改已有类的前提下，通过增加新的工厂类实现扩展&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;抽象工厂模式&#34;&gt;抽象工厂模式&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;围绕一个超级工厂创建其他工厂，该超级工厂又称为其他工厂的工厂&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;建造者模式&#34;&gt;建造者模式&lt;/h2&gt;
+&lt;h3 id=&#34;优点-1&#34;&gt;优点&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;产品的建造和表示分离，实现了解耦，使用建造者模式可以使客户端不必知道产品内部组成的细节&lt;/li&gt;
+&lt;li&gt;将复杂产品的创建步骤分解在不同的方法中，使得创建过程更加清晰&lt;/li&gt;
+&lt;li&gt;具体的建造者类之间是相互独立的，这有利于系统的扩展，增加新的具体建造者无需修改原有的代码，符合开闭原则&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;缺点&#34;&gt;缺点&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;建造者模式创建的产品一般具有较多的共同点，如果产品差异性很大，就不适合使用建造者模式&lt;/li&gt;
+&lt;li&gt;如果产品的内部变化复杂，则需要定义很多具体建造者来实现这种变化，系统会变得很庞大&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;原型模式&#34;&gt;原型模式&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;实质是将创建的对象进行克隆，提高程序效率&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;适配器模式&#34;&gt;适配器模式&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;例子 &amp;mdash; 电脑 - 转接器 - 网线&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;桥接模式&#34;&gt;桥接模式&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;最佳实践 &amp;ndash; 一个类存在两个独立变化的维度，且这两个维度都需要进行扩展&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;静态代理&#34;&gt;静态代理&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;例子 &amp;mdash; 租房的人，中介，房东&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;动态代理&#34;&gt;动态代理&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;动态代理的代理类是动态生成的，不是我们直接写好的！&lt;/li&gt;
+&lt;li&gt;动态代理分为两大类：基于接口的动态代理，基于类的动态代理&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>Zookeeper初探</title>
+        <link>https://zhengzel.github.io/p/zookeeper%E5%88%9D%E6%8E%A2/</link>
+        <pubDate>Fri, 23 Dec 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhengzel.github.io/p/zookeeper%E5%88%9D%E6%8E%A2/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/p/zookeeper%E5%88%9D%E6%8E%A2/background.jpg" alt="Featured image of post Zookeeper初探" /&gt;&lt;h2 id=&#34;概念&#34;&gt;概念&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;分布式协调服务  &amp;mdash;  实质是分布式锁&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;什么是分布式锁&#34;&gt;什么是分布式锁&lt;/h2&gt;
+</description>
+        </item>
+        <item>
+        <title>微服务探索</title>
+        <link>https://zhengzel.github.io/p/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8E%A2%E7%B4%A2/</link>
+        <pubDate>Fri, 23 Dec 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhengzel.github.io/p/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8E%A2%E7%B4%A2/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/p/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%8E%A2%E7%B4%A2/background.png" alt="Featured image of post 微服务探索" /&gt;&lt;h2 id=&#34;解决方案&#34;&gt;解决方案&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Spring Boot + Spring Cloud （特点：&lt;!-- raw HTML omitted --&gt;组件多  功能完备&lt;!-- raw HTML omitted --&gt;  Http通信） &amp;mdash;  成熟的微服务架构解决方案&lt;/li&gt;
+&lt;li&gt;Spring Boot + Dubbo + Zookeeper （特点：组件少  功能非完备  RPC框架通信）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;常见问题&#34;&gt;常见问题&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;客户端如何访问这么多的服务？ &amp;mdash; API网关&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;服务与服务之间如何通信？&lt;/p&gt;
+&lt;h4 id=&#34;同步通信&#34;&gt;同步通信&lt;/h4&gt;
+&lt;p&gt;​		HTTP（Apache Http Client）&lt;/p&gt;
+&lt;p&gt;​		RPC（Dubbo&amp;mdash;只支持Java  Apache Thrift  gPRC）&lt;/p&gt;
+&lt;p&gt;异步通信&lt;/p&gt;
+&lt;p&gt;​		消息队列（Kafka  RabbitMQ RocketMQ）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;这么多服务，如何管理？&lt;/p&gt;
+&lt;p&gt;服务治理&lt;/p&gt;
+&lt;p&gt;​		服务注册与发现&lt;/p&gt;
+&lt;p&gt;​				基于客户端的服务注册与发现&lt;/p&gt;
+&lt;p&gt;​						Zookeeper&lt;/p&gt;
+&lt;p&gt;​				基于服务端的服务注册与发现&lt;/p&gt;
+&lt;p&gt;​						Eureka&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;服务挂了，怎么办？（重试机制  服务熔断  服务降级  服务限流）&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;最大的问题   &amp;mdash;&amp;gt;  网络是不可靠的&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        <item>
+        <title>短信发送服务</title>
+        <link>https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/</link>
+        <pubDate>Wed, 14 Dec 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/background.jpg" alt="Featured image of post 短信发送服务" /&gt;&lt;h2 id=&#34;了解阿里云用户权限操作&#34;&gt;了解阿里云用户权限操作&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/process.png&#34;
+	width=&#34;1251&#34;
+	height=&#34;451&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/process_hu9dea3ccf1dc7457be40cf48a70f30b91_41293_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/process_hu9dea3ccf1dc7457be40cf48a70f30b91_41293_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;277&#34;
+		data-flex-basis=&#34;665px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;进入accesskey管理&#34;&gt;进入Accesskey管理&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;登录阿里云，点击工作台，进入后台&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/header.png&#34;
+	width=&#34;1916&#34;
+	height=&#34;57&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/header_hu0443ad0320184b4d2b4c0a716deccbdc_10773_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/header_hu0443ad0320184b4d2b4c0a716deccbdc_10773_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;3361&#34;
+		data-flex-basis=&#34;8067px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;点击头像下方的AccessKey管理，使用子用户&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/accesskey.png&#34;
+	width=&#34;317&#34;
+	height=&#34;410&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/accesskey_huf73b60b9ab49ec7d51b499ffe1356714_15825_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/accesskey_huf73b60b9ab49ec7d51b499ffe1356714_15825_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;77&#34;
+		data-flex-basis=&#34;185px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;用户组创建与权限分配&#34;&gt;用户组创建与权限分配&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;创建用户组&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/userGroup.png&#34;
+	width=&#34;905&#34;
+	height=&#34;347&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/userGroup_hu0f1849c943739ec6a3bbedc4e03a7057_21355_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/userGroup_hu0f1849c943739ec6a3bbedc4e03a7057_21355_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;260&#34;
+		data-flex-basis=&#34;625px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;添加短信服务权限&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/permissions.png&#34;
+	width=&#34;1702&#34;
+	height=&#34;197&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/permissions_hu1dd8d586eb1770ed20ce3432d7f38382_15955_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/permissions_hu1dd8d586eb1770ed20ce3432d7f38382_15955_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;863&#34;
+		data-flex-basis=&#34;2073px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/add.png&#34;
+	width=&#34;560&#34;
+	height=&#34;254&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/add_hu794bc374e863c3ed315a0a20b515baaf_15023_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/add_hu794bc374e863c3ed315a0a20b515baaf_15023_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;220&#34;
+		data-flex-basis=&#34;529px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;用户创建&#34;&gt;用户创建&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;创建用户（注意勾选OpenAPI调用访问）添加到用户组中&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/createUser.png&#34;
+	width=&#34;765&#34;
+	height=&#34;340&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/createUser_hu3679312dce59223f89bbc46ce2462d4a_22213_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/createUser_hu3679312dce59223f89bbc46ce2462d4a_22213_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;225&#34;
+		data-flex-basis=&#34;540px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;AccessKey ID&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/key.png&#34;
+	width=&#34;1631&#34;
+	height=&#34;185&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/key_hu13869a3d6c806dbef0045d897c8160ba_16834_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/key_hu13869a3d6c806dbef0045d897c8160ba_16834_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;881&#34;
+		data-flex-basis=&#34;2115px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;开通阿里云短信服务&#34;&gt;开通阿里云短信服务&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/concept.png&#34;
+	width=&#34;565&#34;
+	height=&#34;407&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/concept_hu4a70e00d4ae95c212044ea0ecc41a67d_24720_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/concept_hu4a70e00d4ae95c212044ea0ecc41a67d_24720_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;138&#34;
+		data-flex-basis=&#34;333px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;添加签名&#34;&gt;添加签名&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;进入短信服务控制台&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/console.png&#34;
+	width=&#34;375&#34;
+	height=&#34;423&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/console_hu0dae0ce21e67beca897399c2b122a06d_22458_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/console_hu0dae0ce21e67beca897399c2b122a06d_22458_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;88&#34;
+		data-flex-basis=&#34;212px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;点击国内消息，即可添加签名&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/domestic.png&#34;
+	width=&#34;1704&#34;
+	height=&#34;413&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/domestic_hu7ca6d357f491db4cd94fdcd1d050dfea_33238_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/domestic_hu7ca6d357f491db4cd94fdcd1d050dfea_33238_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;412&#34;
+		data-flex-basis=&#34;990px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;添加签名 (无需添加【】符号，会自动添加)，注意场景说明，审核通过即可&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/explain.png&#34;
+	width=&#34;800&#34;
+	height=&#34;402&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/explain_hud48627599c83d4db8a2fb35bf3faf825_36577_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/explain_hud48627599c83d4db8a2fb35bf3faf825_36577_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;199&#34;
+		data-flex-basis=&#34;477px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;创建模板&#34;&gt;创建模板&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;模板内容可以在常用模板库中查找，场景说明注意事项同上  右侧可以预览效果，审核通过即可&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/templete.png&#34;
+	width=&#34;723&#34;
+	height=&#34;721&#34;
+	srcset=&#34;https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/templete_hu6069f7d0a0e2ae8e00a4ed80b2339c5b_62957_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/%E7%9F%AD%E4%BF%A1%E5%8F%91%E9%80%81%E6%9C%8D%E5%8A%A1/templete_hu6069f7d0a0e2ae8e00a4ed80b2339c5b_62957_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;100&#34;
+		data-flex-basis=&#34;240px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;编写测试代码&#34;&gt;编写测试代码&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;帮助文档&lt;/strong&gt;：&lt;a class=&#34;link&#34; href=&#34;https://next.api.aliyun.com/api-tools/sdk/Dysmsapi?version=2017-05-25&amp;amp;language=java-tea&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;HelpDos&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;创建springboot项目并导入依赖&#34;&gt;创建SpringBoot项目并导入依赖&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.aliyun&lt;span class=&#34;nt&#34;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;tea-openapi&lt;span class=&#34;nt&#34;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;0.2.5&lt;span class=&#34;nt&#34;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;com.aliyun&lt;span class=&#34;nt&#34;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;dysmsapi20170525&lt;span class=&#34;nt&#34;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nt&#34;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;2.0.23&lt;span class=&#34;nt&#34;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        <item>
+        <title>SpringBoot小记</title>
+        <link>https://zhengzel.github.io/p/springboot%E5%B0%8F%E8%AE%B0/</link>
+        <pubDate>Tue, 13 Dec 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhengzel.github.io/p/springboot%E5%B0%8F%E8%AE%B0/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/p/springboot%E5%B0%8F%E8%AE%B0/background.jpg" alt="Featured image of post SpringBoot小记" /&gt;&lt;h2 id=&#34;概念&#34;&gt;概念&lt;/h2&gt;
+&lt;p&gt;Filter : 过滤器，用来过滤网站的数据&lt;/p&gt;
+&lt;h2 id=&#34;作用&#34;&gt;作用&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;处理中文乱码&lt;/li&gt;
+&lt;li&gt;登录验证&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;流程&#34;&gt;流程&lt;/h2&gt;
+</description>
+        </item>
+        <item>
+        <title>Filter(过滤器)</title>
+        <link>https://zhengzel.github.io/p/filter%E8%BF%87%E6%BB%A4%E5%99%A8/</link>
+        <pubDate>Sun, 11 Dec 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhengzel.github.io/p/filter%E8%BF%87%E6%BB%A4%E5%99%A8/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/p/filter%E8%BF%87%E6%BB%A4%E5%99%A8/background.jpg" alt="Featured image of post Filter(过滤器)" /&gt;&lt;h2 id=&#34;概念&#34;&gt;概念&lt;/h2&gt;
+&lt;p&gt;Filter : 过滤器，用来过滤网站的数据&lt;/p&gt;
+&lt;h2 id=&#34;作用&#34;&gt;作用&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;处理中文乱码&lt;/li&gt;
+&lt;li&gt;登录验证&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;流程&#34;&gt;流程&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://zhengzel.github.io/p/filter%E8%BF%87%E6%BB%A4%E5%99%A8/filter.png&#34;
+	width=&#34;842&#34;
+	height=&#34;352&#34;
+	srcset=&#34;https://zhengzel.github.io/p/filter%E8%BF%87%E6%BB%A4%E5%99%A8/filter_hub3531aae368e5b0d25125b96111fe7d5_9263_480x0_resize_box_3.png 480w, https://zhengzel.github.io/p/filter%E8%BF%87%E6%BB%A4%E5%99%A8/filter_hub3531aae368e5b0d25125b96111fe7d5_9263_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;239&#34;
+		data-flex-basis=&#34;574px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
