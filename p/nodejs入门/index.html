@@ -232,6 +232,11 @@
     <li><a href="#安装">安装</a></li>
     <li><a href="#编译原理">编译原理</a></li>
     <li><a href="#实现请求响应">实现请求响应</a></li>
+    <li><a href="#操作mysql数据库">操作Mysql数据库</a>
+      <ol>
+        <li><a href="#安装mysql依赖">安装mysql依赖</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -373,7 +378,6 @@
 </span><span class="lnt">13
 </span><span class="lnt">14
 </span><span class="lnt">15
-</span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 导入模块是require  就类似于import java.io
@@ -383,16 +387,41 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">http</span>
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">require</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// 浏览器怎么认识hello server!
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 以text-plain去解析hello server 这段数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 以text/html去解析 hello server 这段数据
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span> <span class="s2">&#34;Content-type&#34;</span><span class="o">:</span> <span class="s2">&#34;text/html&#34;</span> <span class="p">});</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// 给浏览器输出内容
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="s2">&#34;&lt;strong&gt;hello server!!!&lt;/strong&gt;&#34;</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">  <span class="p">})</span>
 </span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8888</span><span class="p">);</span> <span class="c1">// 2. 监听--端口8888
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;你启动的服务是：http://localhost:8888已启动成功！&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 3. 启动运行服务 node Httpserver.js
-</span></span></span><span class="line"><span class="cl"><span class="c1">// 4. 在浏览器访问http://localhost:8888
+</span></span><span class="line"><span class="cl"><span class="c1">// 3. 启动运行服务 node Httpserver.js 
 </span></span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>2  在浏览器访问http://localhost:8888，结果如下</p>
+</blockquote>
+<p><img src="/p/nodejs%E5%85%A5%E9%97%A8/result.png"
+	width="445"
+	height="90"
+	srcset="/p/nodejs%E5%85%A5%E9%97%A8/result_hud8cfc8248d9410ccd980f0d0369115bc_1341_480x0_resize_box_3.png 480w, /p/nodejs%E5%85%A5%E9%97%A8/result_hud8cfc8248d9410ccd980f0d0369115bc_1341_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="494"
+		data-flex-basis="1186px"
+	
+></p>
+<h2 id="操作mysql数据库">操作Mysql数据库</h2>
+<p>参考：https://www.npmjs.com/package/mysql</p>
+<h3 id="安装mysql依赖">安装mysql依赖</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">mysql</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
 </section>
