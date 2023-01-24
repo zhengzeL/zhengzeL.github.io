@@ -2137,12 +2137,12 @@
 </description>
         </item>
         <item>
-        <title>hugo&#43;Stack搭建个人博客(一)</title>
+        <title>Hugo&#43;Stack搭建个人博客(一)</title>
         <link>https://zhengzel.github.io/p/hugo-stack%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E4%B8%80/</link>
         <pubDate>Sun, 04 Dec 2022 00:00:00 +0000</pubDate>
         
         <guid>https://zhengzel.github.io/p/hugo-stack%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E4%B8%80/</guid>
-        <description>&lt;img src="https://zhengzel.github.io/p/hugo-stack%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E4%B8%80/background.jpg" alt="Featured image of post hugo&#43;Stack搭建个人博客(一)" /&gt;&lt;h2 id=&#34;使用hugo新建站点&#34;&gt;使用hugo新建站点&lt;/h2&gt;
+        <description>&lt;img src="https://zhengzel.github.io/p/hugo-stack%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E4%B8%80/background.jpg" alt="Featured image of post Hugo&#43;Stack搭建个人博客(一)" /&gt;&lt;h2 id=&#34;使用hugo新建站点&#34;&gt;使用Hugo新建站点&lt;/h2&gt;
 &lt;p&gt;在任意位置新建一个文件夹，用于存放博客文件，执行&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
