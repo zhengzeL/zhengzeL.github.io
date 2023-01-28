@@ -237,6 +237,9 @@
     <li><a href="#模板字符串">模板字符串</a></li>
     <li><a href="#函数默认参数">函数默认参数</a></li>
     <li><a href="#箭头函数">箭头函数</a></li>
+    <li><a href="#对象初始化简写">对象初始化简写</a></li>
+    <li><a href="#对象解构">对象解构</a></li>
+    <li><a href="#传播操作符">传播操作符</a></li>
   </ol>
 </nav>
         </div>
@@ -317,7 +320,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 2 分钟
+                    阅读时长: 3 分钟
                 </time>
             </div>
         
@@ -549,8 +552,95 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
-<p>注意：逻辑代码仅有return可以省去，若不是，则不能省去，参数只有一个时，括号也可省略</p>
+<p>注意：逻辑代码仅有return可以省去，若不是，则不能省去，参数仅有一个时，括号才可省略</p>
 </blockquote>
+<h2 id="对象初始化简写">对象初始化简写</h2>
+<blockquote>
+<p>核心：是指如果一个对象的key和value的名字一样的情况下可以定义成一个</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">info</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">title</span><span class="o">:</span> <span class="s2">&#34;广东学相伴&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">link</span><span class="o">:</span> <span class="s2">&#34;https://www.kuangstudy.com&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">go</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;我上学&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// ES6简写
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 因为对象是key:value存在
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 1: 如果key和变量的名字一致，可以只定义一次即可
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 2：如果value是一个函数，可以把&#39;:function&#39;去掉，只剩下()即可
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">title</span> <span class="o">=</span> <span class="s2">&#34;广东学相伴&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">link</span> <span class="o">=</span> <span class="s2">&#34;https://www.kuangstudy.com&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">message</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">title</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">link</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">go</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;我上学&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="对象解构">对象解构</h2>
+<blockquote>
+<p>核心：ES6提供一些快捷获取对象属性和行为方式的方法</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">message</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">title</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">link</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">go</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;我上学&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//ES6对象结构 - 其实就是快速获取属性和方法的一种形式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="p">{</span> <span class="nx">title</span><span class="p">,</span> <span class="nx">link</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">message</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">title</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">link</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="传播操作符">传播操作符</h2>
 
 </section>
 
