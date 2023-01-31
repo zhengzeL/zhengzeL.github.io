@@ -231,6 +231,9 @@
     <li><a href="#简介">简介</a></li>
     <li><a href="#快速开始">快速开始</a></li>
     <li><a href="#安装模块">安装模块</a></li>
+    <li><a href="#正式使用">正式使用</a></li>
+    <li><a href="#复用">复用</a></li>
+    <li><a href="#卸载模块">卸载模块</a></li>
   </ol>
 </nav>
         </div>
@@ -383,7 +386,59 @@
 </div>
 </div><h2 id="安装模块">安装模块</h2>
 <blockquote>
-<p>npm install 模块名 或 npm i 模块名</p>
+<p>npm install 模块名 或 npm i 模块名（可以同时下载多个）</p>
+</blockquote>
+<p>模块位置：项目下的node_moudules</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="c"># 注意 出现下载过慢或者无法下载的情况 ---  可以采用cnpm</span>
+</span></span><span class="line"><span class="cl"><span class="n">npm</span> <span class="n">install</span> <span class="n">-g</span> <span class="n">cnpm</span> <span class="p">-</span><span class="n">-registry</span><span class="p">=</span><span class="n">http</span><span class="err">:</span><span class="p">//</span><span class="n">registry</span><span class="p">.</span><span class="py">npm</span><span class="p">.</span><span class="py">taobao</span><span class="p">.</span><span class="py">org</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># 下载指定的版本号</span>
+</span></span><span class="line"><span class="cl"><span class="n">npm</span> <span class="n">install</span> <span class="n">xxx</span><span class="p">@</span><span class="err">版本号</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="正式使用">正式使用</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// 导入模块redis
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">redis</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;redis&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="nx">redis</span><span class="p">.</span><span class="nx">createClient</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nx">client</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&#34;error&#34;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="nx">client</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&#34;key&#34;</span><span class="p">,</span> <span class="s2">&#34;value&#34;</span><span class="p">,</span> <span class="nx">redis</span><span class="p">.</span><span class="nx">print</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">client</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;key&#34;</span><span class="p">,</span> <span class="nx">redis</span><span class="p">.</span><span class="nx">print</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>执行 node + 文件.js 运行</p>
+</blockquote>
+<h2 id="复用">复用</h2>
+<ul>
+<li>通过npm install xxx 的模块会记录在package.json这个文件中</li>
+<li>复用这个package.json，执行npm install 则能自动下载包含的模块</li>
+</ul>
+<h2 id="卸载模块">卸载模块</h2>
+<blockquote>
+<p>npm uninstall 模块名</p>
 </blockquote>
 
 </section>
