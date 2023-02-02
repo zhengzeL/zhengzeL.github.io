@@ -406,6 +406,9 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="正式使用">正式使用</h2>
+<blockquote>
+<p>执行 node + 文件.js 运行</p>
+</blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -428,10 +431,21 @@
 </span></span><span class="line"><span class="cl"><span class="nx">client</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;key&#34;</span><span class="p">,</span> <span class="nx">redis</span><span class="p">.</span><span class="nx">print</span><span class="p">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><blockquote>
-<p>执行 node + 文件.js 运行</p>
-</blockquote>
-<h2 id="复用">复用</h2>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="c"># 若出现ClientClosedError,可将redis版本降级</span>
+</span></span><span class="line"><span class="cl"><span class="n">npm</span> <span class="n">install</span> <span class="n">redis</span><span class="nv">@3</span><span class="p">.</span><span class="py">1</span><span class="p">.</span><span class="py">2</span> <span class="p">-</span><span class="n">-save</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># 注意 记得启动redis-server.exe</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="复用">复用</h2>
 <ul>
 <li>通过npm install xxx 的模块会记录在package.json这个文件中</li>
 <li>复用这个package.json，执行npm install 则能自动下载包含的模块</li>
