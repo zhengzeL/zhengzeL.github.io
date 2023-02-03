@@ -35,6 +35,31 @@
 &lt;/ul&gt;
 </description>
         </item>
+        <item>
+        <title>JS模块化规范</title>
+        <link>https://zhengzel.github.io/p/js%E6%A8%A1%E5%9D%97%E5%8C%96%E8%A7%84%E8%8C%83/</link>
+        <pubDate>Thu, 03 Feb 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhengzel.github.io/p/js%E6%A8%A1%E5%9D%97%E5%8C%96%E8%A7%84%E8%8C%83/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/p/js%E6%A8%A1%E5%9D%97%E5%8C%96%E8%A7%84%E8%8C%83/background.jpg" alt="Featured image of post JS模块化规范" /&gt;&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;模块化产生的背景&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;随着网站逐渐变成 &amp;quot; 互联网应用程序 &amp;quot; ，嵌入网页的javascript代码越来越庞大，越来越复杂&lt;/p&gt;
+&lt;p&gt;所以模块化成了迫切的需求&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;模块化规范&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;CommonJS模块化规范&lt;/li&gt;
+&lt;li&gt;ES6模块化规范&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;commonjs规范&#34;&gt;CommonJS规范&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;每个文件就是一个模块，有自己的作用域，在一个文件里面定义的变量，函数，类都是私有的，对其他文件不可见&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
         
     </channel>
 </rss>
