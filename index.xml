@@ -6,7 +6,15 @@
         <description>Recent content on Satan的博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Wed, 01 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://zhengzel.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 05 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://zhengzel.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>WebPack入门</title>
+        <link>https://zhengzel.github.io/p/webpack%E5%85%A5%E9%97%A8/</link>
+        <pubDate>Sun, 05 Feb 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhengzel.github.io/p/webpack%E5%85%A5%E9%97%A8/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/p/webpack%E5%85%A5%E9%97%A8/background.jpg" alt="Featured image of post WebPack入门" /&gt;</description>
+        </item>
+        <item>
         <title>Babel入门</title>
         <link>https://zhengzel.github.io/p/babel%E5%85%A5%E9%97%A8/</link>
         <pubDate>Wed, 01 Feb 2023 00:00:00 +0000</pubDate>
