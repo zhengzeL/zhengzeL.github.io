@@ -383,8 +383,97 @@
 </li>
 <li>
 <p>src下创建common.js</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// 输出
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">exports</span><span class="p">.</span><span class="nx">info</span> <span class="o">=</span> <span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 往控制台输出
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 往浏览器输出
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>src下创建utils.js</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">exports</span><span class="p">.</span><span class="nx">add</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>src下创建main.js</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// 导入模块
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="nx">utils</span> <span class="nx">from</span> <span class="s2">&#34;./utils.js&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">common</span> <span class="nx">from</span> <span class="s2">&#34;./common.js&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">common</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&#34;Hello World&#34;</span> <span class="o">+</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>在根目录下创建webpack.config.js配置打包规则</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// 导入path模块
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;path&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 定义JS打包的规则
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 入口函数从哪里开始进行编译打包
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">entry</span><span class="o">:</span> <span class="s2">&#34;./src/main.js&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 编译成功以后把内容输出到哪里去
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 定义输出的指定的目录，_dirname当前项目根目录，生成一个dist文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">path</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s2">&#34;./dist&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 合并的js文件存储在dist/bundule。js文件中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">filename</span><span class="o">:</span> <span class="s2">&#34;bundle.js&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>终端执行webpack命令，查看结果</p>
 </li>
-<li></li>
 </ol>
 
 </section>
