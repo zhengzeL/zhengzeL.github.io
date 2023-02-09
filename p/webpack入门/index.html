@@ -555,23 +555,21 @@
 </span><span class="lnt">12
 </span><span class="lnt">13
 </span><span class="lnt">14
-</span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// Node.js内置模块
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;path&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">	<span class="nx">output</span><span class="o">:</span><span class="p">{</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">	<span class="p">},</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">module</span><span class="o">:</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">rules</span><span class="o">:</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">			<span class="p">{</span>
-</span></span><span class="line"><span class="cl">				<span class="nx">test</span><span class="o">:</span> <span class="sr">/\.css$/</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">				<span class="nx">use</span><span class="o">:</span> <span class="p">{</span><span class="s1">&#39;style-loader&#39;</span><span class="p">,</span><span class="s1">&#39;css-loader&#39;</span><span class="p">}</span>
-</span></span><span class="line"><span class="cl">			<span class="p">}</span>
-</span></span><span class="line"><span class="cl">		<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">rules</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 把项目中所有的.css结尾的文件进行打包
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.css$/</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">use</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;style-loader&#34;</span><span class="p">,</span> <span class="s2">&#34;css-loader&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -598,18 +596,33 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">require</span><span class="o">(</span><span class="s1">&#39;./style.css&#39;</span><span class="o">);</span>
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">import</span> <span class="nt">style</span> <span class="nt">from</span> <span class="s2">&#34;./style.css&#34;</span><span class="o">;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
-<p>运行编译命令</p>
+<p>修改package.json，增加命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="s2">&#34;scripts&#34;</span><span class="err">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;dev&#34;</span><span class="p">:</span> <span class="s2">&#34;webpack -w&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span><span class="err">,</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>执行命令，编译</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">npm run dev
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">npm</span> <span class="n">run</span> <span class="n">dev</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
@@ -661,6 +674,30 @@
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/vue%E5%85%A5%E9%97%A8/">
+        
+        
+            <div class="article-image">
+                <img src="/p/vue%E5%85%A5%E9%97%A8/background.cb5ac29717d1de9990954d7343bf0d53_huab2a1c9364cda151bdae3b3d91c0b3f9_98959_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Vue入门"
+                        
+                        data-hash="md5-y1rClxfR3pmQlU1zQ78NUw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Vue入门</h2>
+        </div>
+    </a>
+</article>
+
             
                 
 <article class="has-image">
@@ -753,30 +790,6 @@
 
         <div class="article-details">
             <h2 class="article-title">NodeJs入门</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="has-image">
-    <a href="/p/elasticsearch%E5%85%A5%E9%97%A8/">
-        
-        
-            <div class="article-image">
-                <img src="/p/elasticsearch%E5%85%A5%E9%97%A8/background.9390be11c25eec202479d382306b65e0_hua80d3c6f1bbf1e0f1d63b8e880a4887b_241267_250x150_fill_q75_box_smart1.jpg" 
-                        width="250" 
-                        height="150" 
-                        loading="lazy"
-                        alt="Featured image of post ElasticSearch入门"
-                        
-                        data-hash="md5-k5C&#43;EcJe7CAkedOCMGtl4A==">
-                
-            </div>
-        
-
-        <div class="article-details">
-            <h2 class="article-title">ElasticSearch入门</h2>
         </div>
     </a>
 </article>
