@@ -12,7 +12,34 @@
         <pubDate>Thu, 09 Feb 2023 00:00:00 +0000</pubDate>
         
         <guid>https://zhengzel.github.io/p/vue%E5%85%A5%E9%97%A8/</guid>
-        <description>&lt;img src="https://zhengzel.github.io/p/vue%E5%85%A5%E9%97%A8/background.jpg" alt="Featured image of post Vue入门" /&gt;</description>
+        <description>&lt;img src="https://zhengzel.github.io/p/vue%E5%85%A5%E9%97%A8/background.jpg" alt="Featured image of post Vue入门" /&gt;&lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Vue是一套用于构建用户界面的渐进式框架，核心库只关注视图层&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;视图主要是什么呢？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;给用户提供一个浏览的界面&lt;/li&gt;
+&lt;li&gt;刷新后台给的数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其他的一些组件&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;网络通信：axios&lt;/li&gt;
+&lt;li&gt;页面跳转：vue-router&lt;/li&gt;
+&lt;li&gt;状态管理：vuex&lt;/li&gt;
+&lt;li&gt;Vue-ui: elementui&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;css预处理器&#34;&gt;CSS预处理器&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;提供了css缺失的样式复用机制，减少冗余代码，提供样式代码的可维护性&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;定义&#34;&gt;定义&lt;/h3&gt;
+&lt;p&gt;以一种专门的编程语言，进行web页面样式设计，再通过编译器转化为正常的css文件，以供项目使用&lt;/p&gt;
+&lt;h3 id=&#34;类型&#34;&gt;类型&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;SASS：基于Ruby,通过服务端处理，解析效率高，需要学习Ruby语言，上手难度略高&lt;/li&gt;
+&lt;li&gt;LESS：基于NodeJS,通过客户端处理，使用简单，功能比SASS简单，效率也略低于SASS，但是在实际开发中已经足够了&lt;/li&gt;
+&lt;/ul&gt;
+</description>
         </item>
         <item>
         <title>WebPack入门</title>
