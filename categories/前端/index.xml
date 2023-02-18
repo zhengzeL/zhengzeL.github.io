@@ -16,6 +16,14 @@
 &lt;blockquote&gt;
 &lt;p&gt;Vue是一套用于构建用户界面的渐进式框架，核心库只关注视图层&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;核心：实现了DOM监听与数据绑定&lt;/p&gt;
+&lt;p&gt;优点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;轻量化&lt;/li&gt;
+&lt;li&gt;移动优先&lt;/li&gt;
+&lt;li&gt;易上手，吸收了Angular和Recat的长处&lt;/li&gt;
+&lt;li&gt;开源，社区活跃度高&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;视图主要是什么呢？&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;给用户提供一个浏览的界面&lt;/li&gt;
@@ -50,6 +58,7 @@
 &lt;li&gt;Bootstrap：Twitter推出的一个用于前端开发的开源工具包&lt;/li&gt;
 &lt;li&gt;AmazeUI:一款HTML跨屏前端框架&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2 id=&#34;第一个程序&#34;&gt;第一个程序&lt;/h2&gt;
 </description>
         </item>
         <item>

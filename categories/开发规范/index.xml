@@ -6,39 +6,10 @@
         <description>Recent content in 开发规范 on Satan的博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Tue, 13 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://zhengzel.github.io/categories/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Java真实开发规范</title>
-        <link>https://zhengzel.github.io/p/java%E7%9C%9F%E5%AE%9E%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/</link>
-        <pubDate>Tue, 13 Dec 2022 00:00:00 +0000</pubDate>
-        
-        <guid>https://zhengzel.github.io/p/java%E7%9C%9F%E5%AE%9E%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/</guid>
-        <description>&lt;img src="https://zhengzel.github.io/p/java%E7%9C%9F%E5%AE%9E%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/background.jpg" alt="Featured image of post Java真实开发规范" /&gt;&lt;h2 id=&#34;实体类&#34;&gt;实体类&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;公共的字段，如id,createTime,updateTime,提取出来，放到一个公共的类上，其他的实体类继承&lt;/li&gt;
-&lt;li&gt;每个实体类都需要实现Serializable接口(序列化)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;url路径&#34;&gt;URL路径&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;所有的接口必须根据该接口的版本，在 /api 后添加 /v1 或其他版本号。且根据该接口的功能在随后添加功能。（例：/api/v1/auth/login）&lt;/li&gt;
-&lt;li&gt;请求方式采用 Restful 风格，例：GET POST PUT DELETE，这四种请求方式必须与业务相契合。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;数据库设计&#34;&gt;数据库设计&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;主键 Id 的类型应设为 bigint，数据库字符集应设为 utf8_mb4&lt;/li&gt;
-&lt;li&gt;每张表必须含有&lt;strong&gt;创建时间&lt;/strong&gt;与&lt;strong&gt;更新时间&lt;/strong&gt;这两个关键字段&lt;/li&gt;
-&lt;li&gt;每个字段一定要写备注&lt;/li&gt;
-&lt;li&gt;当字段设为 not null 时，应为其设置默认值&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;redis&#34;&gt;Redis&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;在redisTemplete的基础上封装一个redisUtils加以利用&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        </item>
-        <item>
+        <lastBuildDate>Fri, 03 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://zhengzel.github.io/categories/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>JS模块化规范</title>
         <link>https://zhengzel.github.io/p/js%E6%A8%A1%E5%9D%97%E5%8C%96%E8%A7%84%E8%8C%83/</link>
-        <pubDate>Thu, 03 Feb 2022 00:00:00 +0000</pubDate>
+        <pubDate>Fri, 03 Feb 2023 00:00:00 +0000</pubDate>
         
         <guid>https://zhengzel.github.io/p/js%E6%A8%A1%E5%9D%97%E5%8C%96%E8%A7%84%E8%8C%83/</guid>
         <description>&lt;img src="https://zhengzel.github.io/p/js%E6%A8%A1%E5%9D%97%E5%8C%96%E8%A7%84%E8%8C%83/background.jpg" alt="Featured image of post JS模块化规范" /&gt;&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
@@ -276,6 +247,35 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;/ol&gt;
+</description>
+        </item>
+        <item>
+        <title>Java真实开发规范</title>
+        <link>https://zhengzel.github.io/p/java%E7%9C%9F%E5%AE%9E%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/</link>
+        <pubDate>Tue, 13 Dec 2022 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhengzel.github.io/p/java%E7%9C%9F%E5%AE%9E%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/p/java%E7%9C%9F%E5%AE%9E%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/background.jpg" alt="Featured image of post Java真实开发规范" /&gt;&lt;h2 id=&#34;实体类&#34;&gt;实体类&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;公共的字段，如id,createTime,updateTime,提取出来，放到一个公共的类上，其他的实体类继承&lt;/li&gt;
+&lt;li&gt;每个实体类都需要实现Serializable接口(序列化)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;url路径&#34;&gt;URL路径&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;所有的接口必须根据该接口的版本，在 /api 后添加 /v1 或其他版本号。且根据该接口的功能在随后添加功能。（例：/api/v1/auth/login）&lt;/li&gt;
+&lt;li&gt;请求方式采用 Restful 风格，例：GET POST PUT DELETE，这四种请求方式必须与业务相契合。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;数据库设计&#34;&gt;数据库设计&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;主键 Id 的类型应设为 bigint，数据库字符集应设为 utf8_mb4&lt;/li&gt;
+&lt;li&gt;每张表必须含有&lt;strong&gt;创建时间&lt;/strong&gt;与&lt;strong&gt;更新时间&lt;/strong&gt;这两个关键字段&lt;/li&gt;
+&lt;li&gt;每个字段一定要写备注&lt;/li&gt;
+&lt;li&gt;当字段设为 not null 时，应为其设置默认值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;redis&#34;&gt;Redis&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;在redisTemplete的基础上封装一个redisUtils加以利用&lt;/li&gt;
+&lt;/ul&gt;
 </description>
         </item>
         
