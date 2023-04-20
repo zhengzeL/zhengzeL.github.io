@@ -6,7 +6,45 @@
         <description>Recent content in 后端 on Satan的博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Thu, 19 Jan 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://zhengzel.github.io/categories/%E5%90%8E%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 19 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://zhengzel.github.io/categories/%E5%90%8E%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Lombok注解学习</title>
+        <link>https://zhengzel.github.io/p/lombok%E6%B3%A8%E8%A7%A3%E5%AD%A6%E4%B9%A0/</link>
+        <pubDate>Wed, 19 Apr 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://zhengzel.github.io/p/lombok%E6%B3%A8%E8%A7%A3%E5%AD%A6%E4%B9%A0/</guid>
+        <description>&lt;img src="https://zhengzel.github.io/p/lombok%E6%B3%A8%E8%A7%A3%E5%AD%A6%E4%B9%A0/background.jpg" alt="Featured image of post Lombok注解学习" /&gt;&lt;h2 id=&#34;equalsandhashcode&#34;&gt;@EqualsAndHashCode&lt;/h2&gt;
+&lt;p&gt;一般标记在子类上&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;当callSuper = true&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;根据子类自身的字段值和从父类继承的字段值 来生成hashcode，当两个子类对象比较时，只有子类对象的本身的字段值和继承父类的字段值都相同，equals方法的返回值是true&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;当callSuper = false&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;根据子类自身的字段值 来生成hashcode， 当两个子类对象比较时，只有子类对象的本身的字段值相同，父类字段值可以不同，equals方法的返回值是true&lt;/p&gt;
+&lt;h3 id=&#34;例子&#34;&gt;例子&lt;/h3&gt;
+&lt;h2 id=&#34;accessors&#34;&gt;@Accessors&lt;/h2&gt;
+&lt;h3 id=&#34;fluent-属性&#34;&gt;fluent 属性&lt;/h3&gt;
+&lt;p&gt;不写默认为false，当该值为 true 时，对应字段的 getter 方法前面就没有 get，setter 方法就不会有 set&lt;/p&gt;
+&lt;h3 id=&#34;chain-属性&#34;&gt;chain 属性&lt;/h3&gt;
+&lt;p&gt;不写默认为false，当该值为 true 时，对应字段的 setter 方法调用后，会返回当前对象&lt;/p&gt;
+&lt;h3 id=&#34;prefix-属性&#34;&gt;prefix 属性&lt;/h3&gt;
+&lt;p&gt;该属性是一个字符串数组，当该数组有值时，表示忽略字段中对应的前缀，生成对应的 getter 和 setter 方法&lt;/p&gt;
+&lt;h2 id=&#34;requestbody&#34;&gt;@RequestBody&lt;/h2&gt;
+&lt;p&gt;主要用来接收前端传递给后端的json字符串中的数据的(请求体中的数据的)；而最常用的使用请求体传参的无疑是&lt;strong&gt;POST&lt;/strong&gt;请求了，所以使用@RequestBody接收数据时，一般都用POST方式进行提交&lt;/p&gt;
+&lt;h2 id=&#34;responsebody&#34;&gt;@ResponseBody&lt;/h2&gt;
+&lt;p&gt;表示该方法的返回结果直接写入 HTTP response body 中，格式为 json&lt;/p&gt;
+&lt;h2 id=&#34;valid&#34;&gt;@Valid&lt;/h2&gt;
+&lt;p&gt;参数校验&lt;/p&gt;
+&lt;h2 id=&#34;requestparam&#34;&gt;@RequestParam&lt;/h2&gt;
+&lt;p&gt;不加@RequestParam参数为非必传，加@RequestParam写法参数为必传。但@RequestParam可以通过@RequestParam(required = false)设置为非必传&lt;/p&gt;
+&lt;p&gt;@RequestParam可以通过@RequestParam(“userId”)或者@RequestParam(value = “userId”)指定传入的参数名&lt;/p&gt;
+&lt;p&gt;@RequestParam可以通过@RequestParam(defaultValue = “0”)指定参数默认值&lt;/p&gt;
+&lt;h2 id=&#34;pathvariable&#34;&gt;@PathVariable&lt;/h2&gt;
+&lt;p&gt;请求路径中的参数&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>ElasticSearch入门</title>
         <link>https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/</link>
         <pubDate>Thu, 19 Jan 2023 00:00:00 +0000</pubDate>

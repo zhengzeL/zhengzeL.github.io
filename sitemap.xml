@@ -3,18 +3,24 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://zhengzel.github.io/</loc>
-    <lastmod>2023-02-09T00:00:00+00:00</lastmod>
+    <lastmod>2023-04-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zhengzel.github.io/categories/</loc>
-    <lastmod>2023-02-09T00:00:00+00:00</lastmod>
+    <lastmod>2023-04-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zhengzel.github.io/p/lombok%E6%B3%A8%E8%A7%A3%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2023-04-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zhengzel.github.io/post/</loc>
-    <lastmod>2023-02-09T00:00:00+00:00</lastmod>
+    <lastmod>2023-04-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://zhengzel.github.io/p/vue%E5%85%A5%E9%97%A8/</loc>
-    <lastmod>2023-02-09T00:00:00+00:00</lastmod>
+    <loc>https://zhengzel.github.io/categories/%E5%90%8E%E7%AB%AF/</loc>
+    <lastmod>2023-04-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zhengzel.github.io/categories/%E6%8A%80%E6%9C%AF/</loc>
+    <lastmod>2023-04-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://zhengzel.github.io/p/vue%E5%85%A5%E9%97%A8/</loc>
     <lastmod>2023-02-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zhengzel.github.io/categories/%E5%89%8D%E7%AB%AF/</loc>
@@ -42,9 +48,6 @@
     <lastmod>2023-01-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zhengzel.github.io/p/elasticsearch%E5%85%A5%E9%97%A8/</loc>
-    <lastmod>2023-01-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://zhengzel.github.io/categories/%E5%90%8E%E7%AB%AF/</loc>
     <lastmod>2023-01-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://zhengzel.github.io/p/springcloud%E5%85%A5%E9%97%A8/</loc>
